@@ -1,1 +1,3 @@
-# Colors game
+# Colors game 🎨🤓
+
+Descripción super cool
