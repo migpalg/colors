@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game</title>
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main class="app">
+    <section class="splash loading screen center-items" id="splashScreen">
+      <h2 class="splash-title">Splash</h2>
+    </section>
+
+    <section class="home screen active" id="homeScreen">
+      <h2>App Name</h2>
+      <div class="home-play">
+        <button onclick="navigate('difficult')">Jugar</button>
+        <a href="javascript:void(0)" onclick="navigate('tutorial')">¿Cómo jugar?</a>
+      </div>
+      <a href="javascript:void(0)" onclick="navigate('credits')">Créditos</a>
+    </section>
+
+    <section class="credits screen" id="creditsScreen">
+      <h2>Credits</h2>
+      <button onclick="navigate('home')">Go to home</button>
+    </section>
+
+    <section class="tutorial screen" id="tutorialScreen">
+      <h2>Tutorial</h2>
+
+      <button onclick="navigate('home')">Go to home</button>
+    </section>
+
+    <section class="difficult screen" id="difficultScreen">
+      <button onclick="navigate('home')">Volver</button>
+      <h2>Selecciona una dificultad</h2>
+
+      <button onclick="navigate('game')" style="margin-bottom: 20px;">Fácil</button>
+      <button onclick="navigate('game')" style="margin-bottom: 20px;">Medio</button>
+      <button onclick="navigate('game')">Difícil</button>
+    </section>
+
+    <section class="game screen" id="gameScreen">
+      <h2>Game</h2>
+      <button onclick="navigate('review')">Terminar juego</button>
+    </section>
+
+    <section class="review screen" id="reviewScreen">
+      <h2>Review</h2>
+      <button onclick="navigate('difficult')">Jugar de nuevo</button>
+      <button onclick="navigate('home')">Inicio</button>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

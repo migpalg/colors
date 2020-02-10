@@ -1,0 +1,110 @@
+/* Box sizing defaults overrides */
+
+body {
+  background-color: #e1e1e1;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+/* General purpose styles */
+
+.center-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* App styles */
+
+.app {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #e1e1e1;
+  z-index: 0;
+  opacity: 0;
+  transform: translateY(-20%);
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+
+.screen.active {
+  z-index: 1;
+  opacity: 1;
+  transform: none;
+}
+
+/* Splash Screen styles */
+
+.splash {
+  background-color: #1e1e1e;
+  opacity: 0;
+  transform: scale(1.8);
+  transition: all .3s ease;
+  z-index: 100;
+}
+
+.splash.loading {
+  opacity: 1;
+  transform: none;
+}
+
+.splash-title {
+  color: #e1e1e1;
+}
+
+/* Home Screen Styles */
+
+.home {
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
+}
+
+.home-play {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Credit Screen Styles */
+.credits {
+  transform: translateY(30%);
+  background-color: crimson;
+}
+
+/* Tutorial screen styles */
+.tutorial {
+  transform: scale(0.6) perspective(600px) rotateY(90deg);
+  background-color: cornflowerblue;
+}
+
+/* Difficult styles */
+.difficult {
+  transform: perspective(600px) rotateX(60deg) scale(0.4);
+  background-color: goldenrod;
+}
+
+/* Game styles */
+.game {
+  transform: scale(0.4);
+  background-color: violet;
+}
