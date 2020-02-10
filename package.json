@@ -1,11 +1,13 @@
 {
-  "name": "best-game",
+  "name": "colors",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "serve src/"
+    "start": "serve src/",
+    "build": "grunt",
+    "start:build": "grunt && serve dist/"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +18,7 @@
     "grunt": "^1.0.4",
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-uglify": "^4.0.1",
+    "grunt-replace": "^1.0.1",
     "serve": "^11.3.0"
   }
 }
