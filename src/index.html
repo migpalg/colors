@@ -38,9 +38,11 @@
       <button onclick="navigate('home')">Volver</button>
       <h2>Selecciona una dificultad</h2>
 
-      <button onclick="navigate('game')" style="margin-bottom: 20px;">Fácil</button>
-      <button onclick="navigate('game')" style="margin-bottom: 20px;">Medio</button>
-      <button onclick="navigate('game')">Difícil</button>
+      <div id="difficultSwitchButtonsContainer">
+        <button value="easy" style="margin-bottom: 20px;">Fácil</button>
+        <button value="medium" style="margin-bottom: 20px;">Medio</button>
+        <button value="hard">Difícil</button>
+      </div>
     </section>
 
     <section class="game screen" id="gameScreen">
