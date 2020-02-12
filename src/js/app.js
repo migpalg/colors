@@ -90,6 +90,7 @@
   // Retorna una instancia del Juego
   function initGame(store) {
     var timerDisplay = document.getElementById('gameTimerDisplay');
+    var stopGameButton = document.getElementById('stopGameButton');
 
     function Game() {
       this.points = 0;
@@ -123,9 +124,21 @@
       }.bind(this), 100);
     };
 
+    Game.prototype.stop = function() {
+      if (!this.timerId) return;
+
+      clearInterval(this.timerId);
+
+      store.dispatch({ type: 'NAVIGATE', screen: 'difficult' });
+    };
+
     var game = new Game();
 
     game.start();
+
+    stopGameButton.onclick = function() {
+      game.stop();
+    };
 
     console.log(game.config);
   }
