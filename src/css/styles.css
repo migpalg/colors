@@ -116,7 +116,7 @@ html {
 }
 
 .game-options-grid {
-  background-color: red;
+  padding: 20px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -125,4 +125,11 @@ html {
 .game-option {
   flex: 1;
   min-width: 33.333333%;
+  border: none;
+  border-radius: 5px;
+  transition: transform .2s ease;
+}
+
+.game-option:active {
+  transform: scale(1.1);
 }

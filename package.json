@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "serve src/",
-    "start": "npm run build && serve dist/",
+    "start": "serve ./dist -l $PORT",
     "build": "rm -rf dist/ && grunt",
     "start:build": "grunt && serve dist/"
   },
@@ -19,7 +19,9 @@
     "grunt": "^1.0.4",
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-uglify": "^4.0.1",
-    "grunt-replace": "^1.0.1",
+    "grunt-replace": "^1.0.1"
+  },
+  "dependencies": {
     "serve": "^11.3.0"
   }
 }
