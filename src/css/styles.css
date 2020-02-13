@@ -22,6 +22,10 @@ html {
   align-items: center;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 /* App styles */
 
 .app {
@@ -107,4 +111,18 @@ html {
 .game {
   transform: scale(0.4);
   background-color: violet;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.game-options-grid {
+  background-color: red;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.game-option {
+  flex: 1;
+  min-width: 33.333333%;
 }

@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         options: {
           patterns: [
             {
-              match: /\.js\"/g,
+              match: /\.js"/g,
               replacement: '.min.js"',
             },
             {

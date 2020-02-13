@@ -18,7 +18,9 @@
       <h2>App Name</h2>
       <div class="home-play">
         <button onclick="navigate('difficult')">Jugar</button>
-        <a href="javascript:void(0)" onclick="navigate('tutorial')">¿Cómo jugar?</a>
+        <a href="javascript:void(0)" onclick="navigate('tutorial')">
+          ¿Cómo jugar?
+        </a>
       </div>
       <a href="javascript:void(0)" onclick="navigate('credits')">Créditos</a>
     </section>
@@ -35,7 +37,7 @@
     </section>
 
     <section class="difficult screen" id="difficultScreen">
-      <button onclick="navigate('home')">Volver</button>
+      <button onclick="navigate('home')">Menú principal</button>
       <h2>Selecciona una dificultad</h2>
 
       <div id="difficultSwitchButtonsContainer">
@@ -46,9 +48,20 @@
     </section>
 
     <section class="game screen" id="gameScreen">
-      <button id="stopGameButton">Salir</button>
-      <h2>Game</h2>
-      <p id="gameTimerDisplay">0</p>
+      <div>
+        <button id="stopGameButton">Salir</button>
+      </div>
+
+      <div class="center-items flex-column">
+        <h2>Game</h2>
+        <p id="gameOptionTypeDisplay"></p>
+        <p id="gameOptionDisplay"></p>
+        <p id="gameTimerDisplay">0s</p>
+        <h3 id="gamePointsDisplay">0</h3>
+      </div>
+
+      <div class="game-options-grid" id="gameOptionsGrid">
+      </div>
     </section>
 
     <section class="review screen" id="reviewScreen">
