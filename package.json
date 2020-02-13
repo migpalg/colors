@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "serve src/",
-    "build": "grunt",
+    "start:dev": "serve src/",
+    "start": "npm run build && serve dist/",
+    "build": "rm -rf dist/ && grunt",
     "start:build": "grunt && serve dist/"
   },
   "keywords": [],
