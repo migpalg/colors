@@ -5,6 +5,7 @@
     isLoading: true,
     difficult: 'easy', // easy | medium | hard
     lastGame: [],
+    isPlaying: false,
   };
 
   var CONFIG = {
@@ -65,9 +66,18 @@
         return Object.assign(state, {
           difficult: action.difficult,
         });
+      case 'START_GAME':
+        return Object.assign(state, {
+          isPlaying: true,
+        });
       case 'FINISH_GAME':
         return Object.assign(state, {
           lastGame: action.data,
+          isPlaying: false,
+        });
+      case 'CANCEL_GAME':
+        return Object.assign(state, {
+          isPlaying: false,
         });
       default:
         return state;
@@ -334,6 +344,7 @@
     Game.prototype.cancel = function() {
       clearInterval(this.timerId);
       gameOptionsGrid.innerHTML = '';
+      store.dispatch({ type: 'CANCEL_GAME' });
       store.dispatch({ type: 'NAVIGATE', screen: 'difficult' });
     };
 
@@ -363,6 +374,7 @@
       .childNodes.forEach(function(item) {
         if(item.value) {
           item.addEventListener('click', function(event) {
+            if (store.getState().isPlaying) return;
             event.preventDefault();
             var mask = document.createElement('div');
             mask.className = 'difficult-switch-item swiched';
@@ -372,6 +384,7 @@
             mask.style.top = event.target.offsetTop + 'px';
             mask.style.left = event.target.offsetLeft + 'px';
             item.parentElement.appendChild(mask);
+            store.dispatch({ type: 'START_GAME' });
 
             setTimeout(function() {
               mask.style.width = '100%';
