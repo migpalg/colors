@@ -70,22 +70,19 @@
         <h2 class="text-center m-0">¡Fin del juego!</h2>
       </div>
 
-      <div class="review-stats">
+      <div class="review-stats flex-one center-items flex-column">
         <h3 class="text-center review-stats-title">Tus estadísticas</h5>
         <div class="stats-grid">
           <div class="stats-grid-item center-items flex-column">
             <h6>Acertados</h6>
-            <p>0%</p>
+            <p id="assertedPercentaje">0%</p>
           </div>
 
           <div class="stats-grid-item center-items flex-column">
             <h6>Fallidos</h6>
-            <p>0%</p>
+            <p id="dismissedPercentaje"></p>
           </div>
         </div>
-      </div>
-
-      <div>
         <button class="btn btn-block" onclick="navigate('difficult')">Jugar de nuevo</button>
       </div>
     </section>

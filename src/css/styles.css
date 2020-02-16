@@ -167,7 +167,7 @@ html {
 }
 
 .difficult-switch-item {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   position: relative;
 }
 
@@ -228,6 +228,8 @@ html {
   align-items: center;
   gap: 1.2rem;
   grid-gap: 1.2rem;
+  width: 100%;
+  margin-bottom: 1.2rem;
 }
 
 .stats-grid-item {

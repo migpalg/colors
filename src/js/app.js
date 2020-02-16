@@ -125,6 +125,10 @@
     var gameOptionsGrid = document.getElementById('gameOptionsGrid');
     var gameOptDisplay = document.getElementById('gameOptionDisplay');
     var gameOptTypeDisplay = document.getElementById('gameOptionTypeDisplay');
+    var percentajesDisplays = {
+      asserts: document.getElementById('assertedPercentaje'),
+      dissmissed: document.getElementById('dismissedPercentaje'),
+    };
 
     /**
      * Prototype that manages the game state
@@ -333,6 +337,15 @@
         return question.isCorrect !== null;
       });
 
+      var correctAnswersCount = answeredQuestions.filter(function(question) {
+        return question.isCorrect;
+      }).length;
+
+      var correctAnswersPercentaje = correctAnswersCount / answeredQuestions.length;
+
+      percentajesDisplays.asserts.innerText = Math.round(correctAnswersPercentaje * 100) + '%';
+      percentajesDisplays.dissmissed.innerText = Math.round((1 - correctAnswersPercentaje) * 100) + '%';
+
       store.dispatch({ type: 'FINISH_GAME', data: answeredQuestions });
       store.dispatch({ type: 'NAVIGATE', screen: 'review' });
 
@@ -398,10 +411,10 @@
                   type: 'SET_DIFFICULT',
                   difficult: event.target.value,
                 });
+                initGame(store);
                 
                 // When the transition end...
                 setTimeout(function() {
-                  initGame(store);
                   mask.remove();
                 }, 250);
               }, 1000)
