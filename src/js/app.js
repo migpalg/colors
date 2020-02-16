@@ -4,6 +4,7 @@
     selectedScreen: 'home',
     isLoading: true,
     difficult: 'easy', // easy | medium | hard
+    lastGame: [],
   };
 
   var CONFIG = {
@@ -64,6 +65,10 @@
         return Object.assign(state, {
           difficult: action.difficult,
         });
+      case 'FINISH_GAME':
+        return Object.assign(state, {
+          lastGame: action.data,
+        });
       default:
         return state;
     }
@@ -121,7 +126,7 @@
       this.timerId = null;
       this.timer = 0;
       this.options = [];   // {color: '', image: ''}
-      this.questions = []; // {color: '', image: '', type: ''}
+      this.questions = []; // {color: '', image: '', type: '', isCorrect: false}
     }
 
     // Genera una nueva pregunta, con los valores en las opciones y los Muestra
@@ -143,7 +148,10 @@
         ].image,
 
         // Selecciona una de las opciones de tipos
-        type: ['color', 'image'][Math.round(Math.random())]
+        type: ['color', 'image'][Math.round(Math.random())],
+
+        // Por defecto el valor de si fue respondida correctamente es null
+        isCorrect: null,
       });
 
       // Muestra el tipo de selección que tiene que hacer el usuario por
@@ -237,11 +245,16 @@
       // Opción seleccionada por el usuario
       var selected = this.options[optionIndex];
 
-      // Ultima pregunta generada por la computadora
+      // Ultima pregunta generada por la computadora, referencia al objeto en la
+      // variable
       var lastQuestion = this.questions[this.questions.length - 1];
 
+      // Asigna el valor si es correcto
+      lastQuestion.isCorrect =
+        lastQuestion[lastQuestion.type] === selected[lastQuestion.type];
+
       // Verifica si la pregunta fue respondida correctamente
-      if(lastQuestion[lastQuestion.type] === selected[lastQuestion.type]) {
+      if (lastQuestion.isCorrect) {
         this.makePoint(); // Realiza un punto!
       } else {
         this.dismiss(); // Resta puntos :(
@@ -306,6 +319,11 @@
 
       clearInterval(this.timerId);
 
+      var answeredQuestions = this.questions.filter(function(question) {
+        return question.isCorrect !== null;
+      });
+
+      store.dispatch({ type: 'FINISH_GAME', data: answeredQuestions });
       store.dispatch({ type: 'NAVIGATE', screen: 'review' });
 
       gameOptionsGrid.innerHTML = '';
@@ -328,7 +346,7 @@
     };
   }
 
-  // Func ión que inicializa todo
+  // Función que inicializa todo
   function main() {
     // Pantallas de la aplicación referenciadas en un objeto
     var screens = {
@@ -341,17 +359,41 @@
     };
 
     // Botones de selección de dificultad
-    document.querySelector('#difficultSwitchButtonsContainer')
+    document.getElementById('difficultSwitchButtonsContainer')
       .childNodes.forEach(function(item) {
         if(item.value) {
           item.addEventListener('click', function(event) {
             event.preventDefault();
-            navigate('game');
-            store.dispatch({
-              type: 'SET_DIFFICULT',
-              difficult: event.target.value,
-            });
-            initGame(store);
+            var mask = document.createElement('div');
+            mask.className = 'difficult-switch-item swiched';
+            mask.innerText = event.target.innerText;
+            mask.style.width = event.target.clientWidth + 'px';
+            mask.style.height = event.target.clientHeight + 'px';
+            mask.style.top = event.target.offsetTop + 'px';
+            mask.style.left = event.target.offsetLeft + 'px';
+            item.parentElement.appendChild(mask);
+
+            setTimeout(function() {
+              mask.style.width = '100%';
+              mask.style.height = '100%';
+              mask.style.top = '0';
+              mask.style.left = '0';
+              mask.style.borderRadius = '0';
+              setTimeout(function() {
+                navigate('game');
+                store.dispatch({
+                  type: 'SET_DIFFICULT',
+                  difficult: event.target.value,
+                });
+                
+                // When the transition end...
+                setTimeout(function() {
+                  initGame(store);
+                  mask.remove();
+                }, 250);
+              }, 1000)
+            }, 10);
+
           });
         }
       });
@@ -386,7 +428,7 @@
     setTimeout(function () { store.dispatch({ type: 'LOAD_APP' }); }, 2000);
 
     navigate = function (screen) {
-      store.dispatch({ type: 'NAVIGATE', screen: screen });
+      store.dispatch({ type : 'NAVIGATE', screen: screen });
     };
   }
 

@@ -16,8 +16,8 @@
 
     <section class="home screen active" id="homeScreen">
       <h2>App Name</h2>
-      <div class="home-play">
-        <button onclick="navigate('difficult')">Jugar</button>
+      <div class="home-play flex-column center-items">
+        <button class="btn btn-block" onclick="navigate('difficult')">Jugar</button>
         <a href="javascript:void(0)" onclick="navigate('tutorial')">
           ¿Cómo jugar?
         </a>
@@ -40,10 +40,10 @@
       <button onclick="navigate('home')">Menú principal</button>
       <h2>Selecciona una dificultad</h2>
 
-      <div id="difficultSwitchButtonsContainer">
-        <button value="easy" style="margin-bottom: 20px;">Fácil</button>
-        <button value="medium" style="margin-bottom: 20px;">Medio</button>
-        <button value="hard">Difícil</button>
+      <div class="difficult-switch" id="difficultSwitchButtonsContainer">
+        <button class="btn btn-block difficult-switch-item" value="easy">Fácil 😅</button>
+        <button class="btn btn-block difficult-switch-item" value="medium">Medio 😥</button>
+        <button class="btn btn-block difficult-switch-item" value="hard">Difícil 😈</button>
       </div>
     </section>
 
@@ -65,9 +65,29 @@
     </section>
 
     <section class="review screen" id="reviewScreen">
-      <h2>Review</h2>
-      <button onclick="navigate('difficult')">Jugar de nuevo</button>
-      <button onclick="navigate('home')">Inicio</button>
+      <div class="d-flex justify-content-between">
+        <button class="btn" onclick="navigate('home')">x</button>
+        <h2 class="text-center m-0">¡Fin del juego!</h2>
+      </div>
+
+      <div class="review-stats">
+        <h3 class="text-center review-stats-title">Tus estadísticas</h5>
+        <div class="stats-grid">
+          <div class="stats-grid-item center-items flex-column">
+            <h6>Acertados</h6>
+            <p>0%</p>
+          </div>
+
+          <div class="stats-grid-item center-items flex-column">
+            <h6>Fallidos</h6>
+            <p>0%</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn btn-block" onclick="navigate('difficult')">Jugar de nuevo</button>
+      </div>
     </section>
   </main>
 
