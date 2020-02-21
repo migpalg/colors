@@ -188,7 +188,7 @@
       var imageOptions = [];
 
       // Mientras las opciones no están listas, genera números aleatorios
-      while(
+      while (
         colorOptions.length < this.config.optionsCount ||
         imageOptions.length < this.config.optionsCount
       ) {
@@ -201,14 +201,14 @@
           Math.random() * (CONFIG.options.colors.length - 1)
         );
 
-        if(
+        if (
           !imageOptions.includes(imageIndex) &&
           imageOptions.length < this.config.optionsCount
         ) {
           imageOptions.push(imageIndex);
         }
 
-        if(
+        if (
           !colorOptions.includes(colorIndex) &&
           colorOptions.length < this.config.optionsCount
         ) {
@@ -389,8 +389,11 @@
           item.addEventListener('click', function(event) {
             if (store.getState().isPlaying) return;
             event.preventDefault();
+
+            // Create mask element to make hero animation
             var mask = document.createElement('div');
-            mask.className = 'difficult-switch-item swiched';
+            mask.classList.add('difficult-switch-item');
+            mask.classList.add('swiched');
             mask.innerText = event.target.innerText;
             mask.style.width = event.target.clientWidth + 'px';
             mask.style.height = event.target.clientHeight + 'px';
@@ -400,11 +403,7 @@
             store.dispatch({ type: 'START_GAME' });
 
             setTimeout(function() {
-              mask.style.width = '100%';
-              mask.style.height = '100%';
-              mask.style.top = '0';
-              mask.style.left = '0';
-              mask.style.borderRadius = '0';
+              mask.classList.add('full-screen')
               setTimeout(function() {
                 navigate('game');
                 store.dispatch({
@@ -412,12 +411,12 @@
                   difficult: event.target.value,
                 });
                 initGame(store);
-                
+
                 // When the transition end...
                 setTimeout(function() {
                   mask.remove();
                 }, 250);
-              }, 1000)
+              }, 1000);
             }, 10);
 
           });
