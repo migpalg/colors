@@ -51,6 +51,16 @@
   };
 
   var gameStorage = {
+    globalAssertedDisplay: document.getElementById('globalAssertedPercentaje'),
+    globalDismissedDisplay: document.getElementById('globalDismissedPercentaje'),
+    updateDisplays: function() {
+      var isSetted = Boolean(localStorage.getItem(CONFIG.historyStorageKey));
+
+      var winRate = this.getGlobalPercentaje();
+
+      this.globalAssertedDisplay.innerText = Math.round(winRate * 100) + '%';
+      this.globalDismissedDisplay.innerText = (isSetted ? Math.round((1 - winRate) * 100) : 0) + '%';
+    },
     putGameStats: function(winRate) {
       if (typeof winRate !== 'number') {
         console.error('Unvalid values to put in storage');
@@ -62,26 +72,28 @@
       items.push(winRate);
       
       localStorage.setItem(CONFIG.historyStorageKey, JSON.stringify(items));
+
+      this.updateDisplays();
     },
     getItems: function() {
       return JSON.parse(localStorage.getItem(CONFIG.historyStorageKey) || "[]");
     },
     getGlobalPercentaje: function() {
       var items = this.getItems();
-      if (items.length <= 0) return { winRate: 0, dismissRate: 0 };
+      if (items.length <= 0) return  0;
 
       var winRate = items.reduce(function(lastItem, currentItem) {
         return lastItem + currentItem;
       }) / items.length;
 
-      console.log(winRate);
+      return winRate;
     },
     clear: function() {
       localStorage.removeItem(CONFIG.historyStorageKey);
     }
   };
 
-  console.log(gameStorage.getItems());
+  gameStorage.updateDisplays();
 
   // Reductor que servirá para manejar el estado del aplicativo
   function reducer(state, action) {
