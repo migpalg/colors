@@ -81,14 +81,7 @@
     }
   };
 
-  gameStorage.putGameStats(1);
-  gameStorage.putGameStats(1);
-  gameStorage.putGameStats(0);
-  gameStorage.putGameStats(0);
-
-  gameStorage.getGlobalPercentaje();
-
-  gameStorage.clear();
+  console.log(gameStorage.getItems());
 
   // Reductor que servirá para manejar el estado del aplicativo
   function reducer(state, action) {
@@ -386,6 +379,8 @@
 
       percentajesDisplays.asserts.innerText = Math.round(correctAnswersPercentaje * 100) + '%';
       percentajesDisplays.dissmissed.innerText = Math.round((1 - correctAnswersPercentaje) * 100) + '%';
+
+      gameStorage.putGameStats(Math.round(correctAnswersPercentaje * 100) / 100); 
 
       store.dispatch({ type: 'FINISH_GAME', data: answeredQuestions });
       store.dispatch({ type: 'NAVIGATE', screen: 'review' });
