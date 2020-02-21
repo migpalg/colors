@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game</title>
+  <title>GemRush</title>
 
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -33,7 +33,18 @@
 
     <section class="history screen" id="historyScreen">
       <h2>History</h2>
-      <button onclick="navigate('home')">Go to home</button>
+      <div class="stats-grid">
+        <div class="stats-grid-item center-items flex-column">
+          <h6>Acertados</h6>
+          <p id="globalAssertedPercentaje">0%</p>
+        </div>
+
+        <div class="stats-grid-item center-items flex-column">
+          <h6>Fallidos</h6>
+          <p id="globalDismissedPercentaje">0%</p>
+        </div>
+      </div>
+      <button class="btn btn-block" onclick="navigate('home')">Go to home</button>
     </section>
 
     <section class="tutorial screen" id="tutorialScreen">
