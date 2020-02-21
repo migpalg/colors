@@ -416,6 +416,7 @@
       difficult: document.getElementById('difficultScreen'),
       game: document.getElementById('gameScreen'),
       review: document.getElementById('reviewScreen'),
+      history: document.getElementById('historyScreen')
     };
 
     // Botones de selección de dificultad
