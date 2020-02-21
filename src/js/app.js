@@ -47,7 +47,48 @@
         '#FF0000',
       ],
     },
+    historyStorageKey: 'GAME_HISTORY',
   };
+
+  var gameStorage = {
+    putGameStats: function(winRate) {
+      if (typeof winRate !== 'number') {
+        console.error('Unvalid values to put in storage');
+        return;
+      }
+
+      var items = this.getItems();
+
+      items.push(winRate);
+      
+      localStorage.setItem(CONFIG.historyStorageKey, JSON.stringify(items));
+    },
+    getItems: function() {
+      return JSON.parse(localStorage.getItem(CONFIG.historyStorageKey) || "[]");
+    },
+    getGlobalPercentaje: function() {
+      var items = this.getItems();
+      if (items.length <= 0) return { winRate: 0, dismissRate: 0 };
+
+      var winRate = items.reduce(function(lastItem, currentItem) {
+        return lastItem + currentItem;
+      }) / items.length;
+
+      console.log(winRate);
+    },
+    clear: function() {
+      localStorage.removeItem(CONFIG.historyStorageKey);
+    }
+  };
+
+  gameStorage.putGameStats(1);
+  gameStorage.putGameStats(1);
+  gameStorage.putGameStats(0);
+  gameStorage.putGameStats(0);
+
+  gameStorage.getGlobalPercentaje();
+
+  gameStorage.clear();
 
   // Reductor que servirá para manejar el estado del aplicativo
   function reducer(state, action) {
@@ -188,7 +229,7 @@
       var imageOptions = [];
 
       // Mientras las opciones no están listas, genera números aleatorios
-      while(
+      while (
         colorOptions.length < this.config.optionsCount ||
         imageOptions.length < this.config.optionsCount
       ) {
@@ -201,14 +242,14 @@
           Math.random() * (CONFIG.options.colors.length - 1)
         );
 
-        if(
+        if (
           !imageOptions.includes(imageIndex) &&
           imageOptions.length < this.config.optionsCount
         ) {
           imageOptions.push(imageIndex);
         }
 
-        if(
+        if (
           !colorOptions.includes(colorIndex) &&
           colorOptions.length < this.config.optionsCount
         ) {
@@ -389,8 +430,11 @@
           item.addEventListener('click', function(event) {
             if (store.getState().isPlaying) return;
             event.preventDefault();
+
+            // Create mask element to make hero animation
             var mask = document.createElement('div');
-            mask.className = 'difficult-switch-item swiched';
+            mask.classList.add('difficult-switch-item');
+            mask.classList.add('swiched');
             mask.innerText = event.target.innerText;
             mask.style.width = event.target.clientWidth + 'px';
             mask.style.height = event.target.clientHeight + 'px';
@@ -400,11 +444,7 @@
             store.dispatch({ type: 'START_GAME' });
 
             setTimeout(function() {
-              mask.style.width = '100%';
-              mask.style.height = '100%';
-              mask.style.top = '0';
-              mask.style.left = '0';
-              mask.style.borderRadius = '0';
+              mask.classList.add('full-screen')
               setTimeout(function() {
                 navigate('game');
                 store.dispatch({
@@ -412,12 +452,12 @@
                   difficult: event.target.value,
                 });
                 initGame(store);
-                
+
                 // When the transition end...
                 setTimeout(function() {
                   mask.remove();
                 }, 250);
-              }, 1000)
+              }, 1000);
             }, 10);
 
           });
