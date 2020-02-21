@@ -11,22 +11,28 @@
 <body>
   <main class="app">
     <section class="splash loading screen center-items" id="splashScreen">
-      <h2 class="splash-title">Splash</h2>
+      <h2 class="splash-title">** Gem Rush **</h2>
     </section>
 
     <section class="home screen active" id="homeScreen">
-      <h2>App Name</h2>
+      <h2>Gem Rush</h2>
       <div class="home-play flex-column center-items">
         <button class="btn btn-block" onclick="navigate('difficult')">Jugar</button>
         <a href="javascript:void(0)" onclick="navigate('tutorial')">
           ¿Cómo jugar?
         </a>
+        <button class="btn btn-block" onclick="navigate('history')">Estadisticas</button>
       </div>
       <a href="javascript:void(0)" onclick="navigate('credits')">Créditos</a>
     </section>
 
     <section class="credits screen" id="creditsScreen">
       <h2>Credits</h2>
+      <button onclick="navigate('home')">Go to home</button>
+    </section>
+
+    <section class="history screen" id="historyScreen">
+      <h2>History</h2>
       <button onclick="navigate('home')">Go to home</button>
     </section>
 
