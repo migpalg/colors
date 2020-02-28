@@ -443,6 +443,8 @@
             var mask = document.createElement('div');
             mask.classList.add('difficult-switch-item');
             mask.classList.add('swiched');
+            mask.classList.add('btn');
+            mask.classList.add('btn-primary');
             mask.innerText = event.target.innerText;
             mask.style.width = event.target.clientWidth + 'px';
             mask.style.height = event.target.clientHeight + 'px';

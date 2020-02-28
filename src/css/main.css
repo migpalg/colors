@@ -164,7 +164,7 @@ html {
 
 .home-btn {
   margin-top: 1.5rem;
-  width: 70%;
+  width: 180px;
 }
 
 /* Credit Screen Styles */
@@ -203,7 +203,6 @@ html {
   align-items: center;
   display: flex;
   position: fixed;
-  background-color: white;
   border-radius: 10px;
   top: 0;
   left: 0;
