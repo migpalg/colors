@@ -68,7 +68,6 @@ html {
   border-radius: 10px;
   opacity: 1;
   transition: opacity 180ms ease;
-  margin: 10px;
   color: white;
   font-family: KGBlankSpaceSolid, sans-serif;
   text-shadow: 0 2px 3px #000;
@@ -152,6 +151,10 @@ html {
 
 .home-play {
   width: 100%;
+}
+
+.home-btn {
+  margin: 10px;
 }
 
 /* Credit Screen Styles */
