@@ -15,21 +15,19 @@
     </section>
 
     <section class="home screen active" id="homeScreen">
-      <h2>Gem Rush</h2>
-      <div class="home-play flex-column center-items">
-        <button class="btn btn-block home-btn" onclick="navigate('difficult')">Jugar</button>
-        <button class="btn btn-block home-btn" onclick="navigate('tutorial')">Instrucciones</button>
-        <button class="btn btn-block home-btn" onclick="navigate('history')">Estadisticas</button>
-      </div>
-      <button class="btn btn-block home-btn" onclick="navigate('credits')">Créditos</button>
+      <img class="home-app-logo" src="img/app-logo.png" alt="GemRush Logo">
+      <button class="btn btn-block btn-primary home-btn" onclick="navigate('difficult')">Jugar</button>
+      <button class="btn btn-block btn-primary home-btn" onclick="navigate('tutorial')">Instrucciones</button>
+      <button class="btn btn-block btn-primary home-btn" onclick="navigate('history')">Estadisticas</button>
+      <button class="btn btn-block btn-primary home-btn" onclick="navigate('credits')">Créditos</button>
     </section>
 
-    <section class="credits screen" id="creditsScreen">
+    <section class="credits screen center-items" id="creditsScreen">
       <h2>Credits</h2>
-      <button onclick="navigate('home')">Go to home</button>
+      <button class="btn btn-block btn-primary" onclick="navigate('home')">Go to home</button>
     </section>
 
-    <section class="history screen" id="historyScreen">
+    <section class="history screen center-items" id="historyScreen">
       <h2>History</h2>
       <div class="stats-grid">
         <div class="stats-grid-item center-items flex-column">
@@ -42,29 +40,29 @@
           <p id="globalDismissedPercentaje">0%</p>
         </div>
       </div>
-      <button class="btn btn-block" onclick="navigate('home')">Go to home</button>
+      <button class="btn btn-block btn-primary" onclick="navigate('home')">Go to home</button>
     </section>
 
-    <section class="tutorial screen" id="tutorialScreen">
+    <section class="tutorial screen center-items" id="tutorialScreen">
       <h2>Tutorial</h2>
 
-      <button onclick="navigate('home')">Go to home</button>
+      <button class="btn btn-block btn-primary" onclick="navigate('home')">Go to home</button>
     </section>
 
     <section class="difficult screen" id="difficultScreen">
-      <button onclick="navigate('home')">Menú principal</button>
-      <h2>Selecciona una dificultad</h2>
+      <button class="btn btn-block" onclick="navigate('home')">Menú principal</button>
+      <h2 class="difficult-title text-center">Selecciona una dificultad</h2>
 
       <div class="difficult-switch" id="difficultSwitchButtonsContainer">
-        <button class="btn btn-block difficult-switch-item" value="easy">
+        <button class="btn btn-block btn-primary difficult-switch-item" value="easy">
           Fácil 😅
         </button>
 
-        <button class="btn btn-block difficult-switch-item" value="medium">
+        <button class="btn btn-block btn-primary difficult-switch-item" value="medium">
           Medio 😥
         </button>
 
-        <button class="btn btn-block difficult-switch-item" value="hard">
+        <button class="btn btn-block btn-primary difficult-switch-item" value="hard">
           Difícil 😈
         </button>
       </div>
@@ -89,7 +87,7 @@
 
     <section class="review screen" id="reviewScreen">
       <div class="d-flex justify-content-between">
-        <button class="btn" onclick="navigate('home')">x</button>
+        <button class="btn btn-primary" onclick="navigate('home')">x</button>
         <h2 class="text-center m-0">¡Fin del juego!</h2>
       </div>
 
@@ -106,7 +104,7 @@
             <p id="dismissedPercentaje"></p>
           </div>
         </div>
-        <button class="btn btn-block" onclick="navigate('difficult')">
+        <button class="btn btn-block btn-primary" onclick="navigate('difficult')">
           Jugar de nuevo
         </button>
       </div>

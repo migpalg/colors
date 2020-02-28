@@ -280,7 +280,7 @@
 
         // Añade la clase para que se le pongan los estilos del
         // game-option
-        button.className = 'game-option';
+        button.className = 'game-option btn';
 
         // Cambia el background de la opción
         button.style.backgroundColor = CONFIG.options.colors[option.color];
@@ -443,6 +443,8 @@
             var mask = document.createElement('div');
             mask.classList.add('difficult-switch-item');
             mask.classList.add('swiched');
+            mask.classList.add('btn');
+            mask.classList.add('btn-primary');
             mask.innerText = event.target.innerText;
             mask.style.width = event.target.clientWidth + 'px';
             mask.style.height = event.target.clientHeight + 'px';
