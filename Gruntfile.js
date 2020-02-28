@@ -6,8 +6,8 @@ module.exports = function(grunt) {
         banner: '/* Created by the best team :) */',
       },
       build: {
-        src: 'src/js/app.js',
-        dest: 'dist/js/app.min.js',
+        src: 'src/js/main.js',
+        dest: 'dist/js/main.min.js',
       },
     },
     cssmin: {
@@ -17,9 +17,9 @@ module.exports = function(grunt) {
       },
       target: {
         files: {
-          'dist/css/styles.min.css': [
+          'dist/css/main.min.css': [
             'src/css/normalize.css',
-            'src/css/styles.css',
+            'src/css/main.css',
           ],
         },
       },
@@ -47,11 +47,19 @@ module.exports = function(grunt) {
         ],
       },
     },
+    copy: {
+      main: {
+        files: [
+          {expand: true, cwd: 'src/', src: ['img/**', 'fonts/**'], dest: 'dist/'}
+        ]
+      }
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-replace');
 
-  grunt.registerTask('default', ['uglify', 'cssmin', 'replace']);
+  grunt.registerTask('default', ['uglify', 'cssmin', 'replace', 'copy']);
 };

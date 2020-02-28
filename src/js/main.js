@@ -47,7 +47,53 @@
         '#FF0000',
       ],
     },
+    historyStorageKey: 'GAME_HISTORY',
   };
+
+  var gameStorage = {
+    globalAssertedDisplay: document.getElementById('globalAssertedPercentaje'),
+    globalDismissedDisplay: document.getElementById('globalDismissedPercentaje'),
+    updateDisplays: function() {
+      var isSetted = Boolean(localStorage.getItem(CONFIG.historyStorageKey));
+
+      var winRate = this.getGlobalPercentaje();
+
+      this.globalAssertedDisplay.innerText = Math.round(winRate * 100) + '%';
+      this.globalDismissedDisplay.innerText = (isSetted ? Math.round((1 - winRate) * 100) : 0) + '%';
+    },
+    putGameStats: function(winRate) {
+      if (typeof winRate !== 'number') {
+        console.error('Unvalid values to put in storage');
+        return;
+      }
+
+      var items = this.getItems();
+
+      items.push(winRate);
+      
+      localStorage.setItem(CONFIG.historyStorageKey, JSON.stringify(items));
+
+      this.updateDisplays();
+    },
+    getItems: function() {
+      return JSON.parse(localStorage.getItem(CONFIG.historyStorageKey) || "[]");
+    },
+    getGlobalPercentaje: function() {
+      var items = this.getItems();
+      if (items.length <= 0) return  0;
+
+      var winRate = items.reduce(function(lastItem, currentItem) {
+        return lastItem + currentItem;
+      }) / items.length;
+
+      return winRate;
+    },
+    clear: function() {
+      localStorage.removeItem(CONFIG.historyStorageKey);
+    }
+  };
+
+  gameStorage.updateDisplays();
 
   // Reductor que servirá para manejar el estado del aplicativo
   function reducer(state, action) {
@@ -188,7 +234,7 @@
       var imageOptions = [];
 
       // Mientras las opciones no están listas, genera números aleatorios
-      while(
+      while (
         colorOptions.length < this.config.optionsCount ||
         imageOptions.length < this.config.optionsCount
       ) {
@@ -201,14 +247,14 @@
           Math.random() * (CONFIG.options.colors.length - 1)
         );
 
-        if(
+        if (
           !imageOptions.includes(imageIndex) &&
           imageOptions.length < this.config.optionsCount
         ) {
           imageOptions.push(imageIndex);
         }
 
-        if(
+        if (
           !colorOptions.includes(colorIndex) &&
           colorOptions.length < this.config.optionsCount
         ) {
@@ -234,7 +280,7 @@
 
         // Añade la clase para que se le pongan los estilos del
         // game-option
-        button.className = 'game-option';
+        button.className = 'game-option btn';
 
         // Cambia el background de la opción
         button.style.backgroundColor = CONFIG.options.colors[option.color];
@@ -346,6 +392,8 @@
       percentajesDisplays.asserts.innerText = Math.round(correctAnswersPercentaje * 100) + '%';
       percentajesDisplays.dissmissed.innerText = Math.round((1 - correctAnswersPercentaje) * 100) + '%';
 
+      gameStorage.putGameStats(Math.round(correctAnswersPercentaje * 100) / 100); 
+
       store.dispatch({ type: 'FINISH_GAME', data: answeredQuestions });
       store.dispatch({ type: 'NAVIGATE', screen: 'review' });
 
@@ -380,6 +428,7 @@
       difficult: document.getElementById('difficultScreen'),
       game: document.getElementById('gameScreen'),
       review: document.getElementById('reviewScreen'),
+      history: document.getElementById('historyScreen')
     };
 
     // Botones de selección de dificultad
@@ -389,8 +438,13 @@
           item.addEventListener('click', function(event) {
             if (store.getState().isPlaying) return;
             event.preventDefault();
+
+            // Create mask element to make hero animation
             var mask = document.createElement('div');
-            mask.className = 'difficult-switch-item swiched';
+            mask.classList.add('difficult-switch-item');
+            mask.classList.add('swiched');
+            mask.classList.add('btn');
+            mask.classList.add('btn-primary');
             mask.innerText = event.target.innerText;
             mask.style.width = event.target.clientWidth + 'px';
             mask.style.height = event.target.clientHeight + 'px';
@@ -400,11 +454,7 @@
             store.dispatch({ type: 'START_GAME' });
 
             setTimeout(function() {
-              mask.style.width = '100%';
-              mask.style.height = '100%';
-              mask.style.top = '0';
-              mask.style.left = '0';
-              mask.style.borderRadius = '0';
+              mask.classList.add('full-screen')
               setTimeout(function() {
                 navigate('game');
                 store.dispatch({
@@ -412,12 +462,12 @@
                   difficult: event.target.value,
                 });
                 initGame(store);
-                
+
                 // When the transition end...
                 setTimeout(function() {
                   mask.remove();
                 }, 250);
-              }, 1000)
+              }, 1000);
             }, 10);
 
           });
