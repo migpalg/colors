@@ -15,13 +15,11 @@
     </section>
 
     <section class="home screen active" id="homeScreen">
-      <h2>Gem Rush</h2>
-      <div class="home-play flex-column center-items">
-        <button class="btn btn-block home-btn" onclick="navigate('difficult')">Jugar</button>
-        <button class="btn btn-block home-btn" onclick="navigate('tutorial')">Instrucciones</button>
-        <button class="btn btn-block home-btn" onclick="navigate('history')">Estadisticas</button>
-      </div>
-      <button class="btn btn-block home-btn" onclick="navigate('credits')">Créditos</button>
+      <img class="home-app-logo" src="img/app-logo.png" alt="GemRush Logo">
+      <button class="btn btn-block btn-primary home-btn" onclick="navigate('difficult')">Jugar</button>
+      <button class="btn btn-block btn-primary home-btn" onclick="navigate('tutorial')">Instrucciones</button>
+      <button class="btn btn-block btn-primary home-btn" onclick="navigate('history')">Estadisticas</button>
+      <button class="btn btn-block btn-primary home-btn" onclick="navigate('credits')">Créditos</button>
     </section>
 
     <section class="credits screen" id="creditsScreen">
@@ -56,15 +54,15 @@
       <h2>Selecciona una dificultad</h2>
 
       <div class="difficult-switch" id="difficultSwitchButtonsContainer">
-        <button class="btn btn-block difficult-switch-item" value="easy">
+        <button class="btn btn-block btn-primary difficult-switch-item" value="easy">
           Fácil 😅
         </button>
 
-        <button class="btn btn-block difficult-switch-item" value="medium">
+        <button class="btn btn-block btn-primary difficult-switch-item" value="medium">
           Medio 😥
         </button>
 
-        <button class="btn btn-block difficult-switch-item" value="hard">
+        <button class="btn btn-block btn-primary difficult-switch-item" value="hard">
           Difícil 😈
         </button>
       </div>
