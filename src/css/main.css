@@ -55,13 +55,15 @@ html {
 }
 
 .btn {
-  background-color: white;
+  background-color: #666565;
   box-shadow: 0 5px 20px -10px #000;
   border: none;
   padding: 10px 20px;
   border-radius: 10px;
   opacity: 1;
   transition: opacity 180ms ease;
+  margin: 10px;
+  color: white;
 }
 
 .btn:focus {
@@ -94,7 +96,7 @@ html {
   bottom: 0;
   display: flex;
   flex-direction: column;
-  background-color: #e1e1e1;
+  background: linear-gradient(#FFB200, #A65300);
   z-index: 0;
   opacity: 0;
   transform: translateY(-20%);
