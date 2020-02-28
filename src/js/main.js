@@ -280,7 +280,7 @@
 
         // Añade la clase para que se le pongan los estilos del
         // game-option
-        button.className = 'game-option';
+        button.className = 'game-option btn';
 
         // Cambia el background de la opción
         button.style.backgroundColor = CONFIG.options.colors[option.color];

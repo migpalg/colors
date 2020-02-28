@@ -20,6 +20,19 @@ html {
   src: url(../fonts/KGBlankSpaceSolid.ttf);
 }
 
+/* Font defaults */
+/* TODO: Add title, text fonts */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  font-family: KGBlankSpaceSolid;
+}
+
 /* General purpose styles */
 
 .d-flex {
@@ -183,6 +196,10 @@ html {
 .difficult {
   transform: perspective(600px) rotateX(60deg) scale(0.4);
   padding: 1.5em;
+}
+
+.difficult-title {
+  font-family: 1.2rem;
 }
 
 .difficult-switch {
