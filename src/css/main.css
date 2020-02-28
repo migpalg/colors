@@ -14,6 +14,12 @@ html {
   box-sizing: inherit;
 }
 
+/* Font families */
+@font-face {
+  font-family: KGBlankSpaceSolid;
+  src: url(../fonts/KGBlankSpaceSolid.ttf);
+}
+
 /* General purpose styles */
 
 .d-flex {
@@ -64,6 +70,8 @@ html {
   transition: opacity 180ms ease;
   margin: 10px;
   color: white;
+  font-family: KGBlankSpaceSolid, sans-serif;
+  text-shadow: 0 2px 3px #000;
 }
 
 .btn:focus {
