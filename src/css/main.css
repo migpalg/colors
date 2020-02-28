@@ -80,7 +80,8 @@ span {
   border-radius: 10px;
   opacity: 1;
   transition: opacity 180ms ease;
-  color: white;
+  color: #FFF;
+  background-color: #FFB200;
   font-family: KGBlankSpaceSolid, sans-serif;
   text-shadow: 0 2px 3px #000;
 }
@@ -199,7 +200,7 @@ span {
 }
 
 .difficult-title {
-  font-family: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .difficult-switch {
