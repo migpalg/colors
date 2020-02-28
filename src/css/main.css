@@ -62,7 +62,6 @@ html {
   border-radius: 10px;
   opacity: 1;
   transition: opacity 180ms ease;
-  margin: 10px;
   color: white;
 }
 
@@ -144,6 +143,10 @@ html {
 
 .home-play {
   width: 100%;
+}
+
+.home-btn {
+  margin: 10px;
 }
 
 /* Credit Screen Styles */
