@@ -111,7 +111,7 @@ html {
 /* Splash Screen styles */
 
 .splash {
-  background-color: #1e1e1e;
+  background: linear-gradient(#FFB200, #A65300);
   opacity: 0;
   transform: scale(1.8);
   transition: all .3s ease;
@@ -125,6 +125,11 @@ html {
 
 .splash-title {
   color: #e1e1e1;
+}
+
+.splash-app-logo {
+  max-width: 100%;
+  width: 75%;
 }
 
 /* Home Screen Styles */
