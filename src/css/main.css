@@ -264,6 +264,10 @@ span {
   align-items: center;
 }
 
+.game .game-option-image {
+  height: 15vh;
+}
+
 .game-options-grid {
   padding: 20px;
   width: 100%;
@@ -277,6 +281,10 @@ span {
   border: none;
   border-radius: 5px;
   transition: transform .2s ease;
+}
+
+.game-option .game-option-image {
+  height: 50px;
 }
 
 .game-option:active {
