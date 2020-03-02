@@ -124,7 +124,7 @@ span {
   z-index: 0;
   opacity: 0;
   transform: translateY(-20%);
-  transition: opacity 100ms ease, transform 0.4s ease;
+  transition: opacity 0.3s ease, transform 0.4s ease;
   background-image: url(../img/bgs/default.png);
   background-size: cover;
   background-position: center center;
