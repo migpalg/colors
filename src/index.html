@@ -22,9 +22,35 @@
       <button class="btn btn-block btn-primary home-btn" onclick="navigate('credits')">Créditos</button>
     </section>
 
-    <section class="credits screen center-items" id="creditsScreen">
-      <h2>Credits</h2>
-      <button class="btn btn-block btn-primary" onclick="navigate('home')">Go to home</button>
+    <section class="credits screen justify-content-between" id="creditsScreen">
+      <div class="credits-header d-flex">
+        <img onclick="navigate('home')" class="close-btn" src="img/navigation/close.png" alt="Close screen">
+      </div>
+      <div class="credits-content center-items flex-column">
+        <div class="author-container d-flex">
+          <div class="author-image author-juan" alt=""></div>
+          <div class="author-text-container">
+            <p class="author-name">Juan Pablo García</p>
+            <p class="author-role">Ingeniero en sistemas</p>
+          </div>
+        </div>
+
+        <div class="author-container d-flex">
+          <div class="author-image author-miguel" alt=""></div>
+          <div class="author-text-container">
+            <p class="author-name">Miguel Ángel Palacio</p>
+            <p class="author-role">Ingeniero en sistemas</p>
+          </div>
+        </div>
+
+        <div class="author-container d-flex">
+          <div class="author-image author-maria" alt=""></div>
+          <div class="author-text-container">
+            <p class="author-name">Maria Isabel Pérez</p>
+            <p class="author-role">Diseñadora gráfica</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="history screen center-items" id="historyScreen">
