@@ -84,6 +84,7 @@ span {
   background-color: #FFB200;
   font-family: KGBlankSpaceSolid, sans-serif;
   text-shadow: 0 2px 3px #000;
+  letter-spacing: 1px;
 }
 
 .btn.btn-primary {
@@ -123,7 +124,7 @@ span {
   z-index: 0;
   opacity: 0;
   transform: translateY(-20%);
-  transition: opacity 100ms ease, transform 0.4s ease;
+  transition: opacity 0.35s ease, transform 0.4s ease;
 }
 
 
@@ -169,7 +170,7 @@ span {
 /* Home Screen Styles */
 
 .home {
-  transform: scale(1.3);
+  transform: scale(1.5);
   background: linear-gradient(#FFB200, #A65300);
   background-image: url(../img/bgs/home.png);
   background-size: cover;
@@ -201,15 +202,20 @@ span {
   width: 180px;
 }
 
+/* History Screen styles */
+.history {
+  transform: scale(1.2);
+}
+
 /* Credit Screen Styles */
 .credits {
-  transform: translateY(30%);
+  transform: scale(1.2);
   background-color: crimson;
 }
 
 /* Tutorial screen styles */
 .tutorial {
-  transform: translateX(100%);
+  transform: scale(1.2);
   background-color: cornflowerblue;
 }
 
