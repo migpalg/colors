@@ -284,6 +284,7 @@ span {
 .game-option {
   flex: 1;
   min-width: 33.333333%;
+  padding: 5px 0;
   border: none;
   border-radius: 5px;
   transition: transform .2s ease;
