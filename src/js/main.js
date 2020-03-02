@@ -31,20 +31,20 @@
     },
     options: {
       images: [
-        'image-1',
-        'image-2',
-        'image-3',
-        'image-4',
-        'image-5',
-        'image-6',
+        'circle',
+        'diamond',
+        'oval',
+        'rhombus',
+        'square',
+        'triangle',
       ],
       colors: [
-        '#FD9EFF',
-        '#90AFE8',
-        '#ABFFC5',
-        '#E8E090',
-        '#FFBA97',
-        '#FF0000',
+        'blue',
+        'crimson',
+        'darkblue',
+        'green',
+        'purple',
+        'yellow',
       ],
     },
     historyStorageKey: 'GAME_HISTORY',
@@ -189,6 +189,10 @@
       this.questions = []; // {color: '', image: '', type: '', isCorrect: false}
     }
 
+    Game.prototype.getOptionImagePath = function(imageIndex, colorIndex) {
+      return 'img/gems/' + CONFIG.options.images[imageIndex] + '/' + CONFIG.options.colors[colorIndex] + '.svg'
+    }
+
     // Genera una nueva pregunta, con los valores en las opciones y los Muestra
     // en la pantalla
     Game.prototype.generateQuestion = function() {
@@ -216,15 +220,11 @@
 
       // Muestra el tipo de selección que tiene que hacer el usuario por
       // medio de un componente
-      gameOptDisplay.innerText = this.questions[lastIndex - 1].type;
+      // gameOptDisplay.innerText = this.questions[lastIndex - 1].type;
+      gameOptDisplay.setAttribute('src', this.getOptionImagePath(this.questions[lastIndex - 1].image, this.questions[lastIndex - 1].color))
 
       // Muestra el contenido del objeto pregunta
-      gameOptTypeDisplay.innerText = this.questions[lastIndex - 1].image;
-
-      // Muestra el color por medio del background
-      gameOptTypeDisplay.style.backgroundColor = CONFIG.options.colors[
-        this.questions[lastIndex - 1].color
-      ];
+      gameOptTypeDisplay.innerHTML = this.questions[lastIndex - 1].type === 'image' ? 'Gema' : 'Color';
     };
 
     Game.prototype.prepareOptions = function() {
@@ -276,17 +276,19 @@
       }
 
       this.options.forEach(function(option, index) {
-        var button = document.createElement('button');
+        var button = document.createElement('div');
+        var image = document.createElement('img');
 
         // Añade la clase para que se le pongan los estilos del
         // game-option
-        button.className = 'game-option btn';
+        button.classList.add('game-option');
+        button.classList.add('center-items');
 
-        // Cambia el background de la opción
-        button.style.backgroundColor = CONFIG.options.colors[option.color];
+        image.classList.add('game-option-image');
 
-        // Cambia el contenido
-        button.innerText = option.image;
+        image.setAttribute('src', this.getOptionImagePath(option.image, option.color));
+
+        button.appendChild(image);
 
         if (minWidthHelper > 1) {
           button.style.minWidth = (1 / minWidthHelper * 100) + '%';
