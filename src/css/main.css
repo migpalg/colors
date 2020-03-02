@@ -104,6 +104,11 @@ span {
   width: 100%;
 }
 
+.close-btn {
+  max-width: 80%;
+  width: 25px;
+}
+
 /* App styles */
 
 .app {
@@ -214,6 +219,60 @@ span {
 .credits {
   transform: scale(1.2);
   background-color: crimson;
+  padding: 1em;
+}
+
+.credits-header {
+  justify-content: flex-end;
+}
+
+.credits-content {
+  flex: 1;
+  justify-content: space-evenly;
+}
+
+.author-container {
+  justify-content: center;
+}
+
+.author-image {
+  width: 100px;
+  height: 100px;
+  border: 5px solid white;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center center;
+}
+
+.author-text-container {
+  align-self: flex-end;
+  font-size: 0.9em;
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+  margin-left: -30px;
+}
+
+.author-text-container > * {
+  margin: 0;
+}
+
+.author-role {
+  font-size: 0.8em;
+  margin-top: 3px;
+  opacity: 0.7;
+}
+
+.author-juan {
+  background-image: url(../img/authors/juan-pablo.jpg);
+}
+
+.author-maria {
+  background-image: url(../img/authors/maria-isabel.jpg);
+}
+
+.author-miguel {
+  background-image: url(../img/authors/miguel-angel.jpg);
 }
 
 /* Tutorial screen styles */
