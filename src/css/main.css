@@ -279,6 +279,7 @@ span {
 .tutorial {
   transform: scale(1.2);
   background-color: cornflowerblue;
+  padding: 1em;
 }
 
 .tutorial-background:before {
@@ -315,6 +316,21 @@ span {
 
 .tutorial-description {
   padding: 0px 50px 0px 50px;
+}
+
+.tutorial-gems-container {
+  text-align-last: center;
+  padding: 2px;
+}
+
+.tutorial-gems {
+  padding: 5px;
+}
+
+.tutorial-gems-selected {
+  border: 3px solid red;
+  border-radius: 50%;
+  margin: -3px;
 }
 
 /* Difficult styles */
