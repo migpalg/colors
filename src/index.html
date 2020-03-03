@@ -69,10 +69,21 @@
       <button class="btn btn-block btn-primary" onclick="navigate('home')">Go to home</button>
     </section>
 
-    <section class="tutorial screen center-items" id="tutorialScreen">
-      <h2>Tutorial</h2>
+    <section class="tutorial screen center-items tutorial-background" id="tutorialScreen">
+      <div class="tutorial-header d-flex">
+        <img onclick="navigate('home')" class="close-btn" src="img/navigation/close.png" alt="Close screen">
+      </div>
 
-      <button class="btn btn-block btn-primary" onclick="navigate('home')">Go to home</button>
+      <div class="tutorial-content center-items flex-column">
+        <div class="tutorial-container d-flex">
+          <div class="tutorial-text-container">
+            <p class="tutorial-description">1. Debes escoger un grado de dificultad. Si subes de nivel tendrás menor tiempo para seleccionar las opciones.</p>
+            <p class="tutorial-description">2. Cuando aparezca la opción de "color" debes seleccionar el mismo color que muestre la figura principal, no importa si en las opciones ese color lo tiene un tipo de figura diferente.</p>
+            
+            <p class="tutorial-description">3. Cuando sea la opción de "figura" debes seleccionar la misma forma que tenga la gema principal entre las opciones, no importa el color.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="difficult screen" id="difficultScreen">
@@ -99,7 +110,7 @@
         <button id="stopGameButton">Salir</button>
       </div>
 
-      <div class="center-items flex-column">
+      <div class="center-items flex-column game-text">
         <p id="gameOptionTypeDisplay"></p>
         <img id="gameOptionDisplay" class="game-option-image" src="img/gems/circle/blue.svg">
         <p id="gameTimerDisplay">0s</p>

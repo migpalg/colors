@@ -281,6 +281,42 @@ span {
   background-color: cornflowerblue;
 }
 
+.tutorial-background:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.tutorial-header {
+  justify-content: flex-end;
+  position: relative;
+}
+
+.tutorial-content {
+  flex: 1;
+  justify-content: space-evenly;
+}
+
+.tutorial-container {
+  justify-content: center;
+  position: relative;
+}
+
+.tutorial-text-container {
+  align-self: flex-end;
+  font-size: 0.8em;
+  color: white;
+  padding: 5px;
+}
+
+.tutorial-description {
+  padding: 0px 50px 0px 50px;
+}
+
 /* Difficult styles */
 .difficult {
   transform: perspective(600px) rotateX(60deg) scale(0.4);
@@ -358,6 +394,10 @@ span {
 
 .game-option:active {
   transform: scale(1.1);
+}
+
+.game-text {
+  color: white;
 }
 
 /* Review styles */
