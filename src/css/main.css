@@ -308,14 +308,13 @@ span {
 }
 
 .tutorial-text-container {
+  font-family: KGBlankSpaceSolid, sans-serif;
   align-self: flex-end;
   font-size: 0.8em;
   color: white;
   padding: 5px;
-}
-
-.tutorial-description {
-  padding: 0px 50px 0px 50px;
+  margin: 0px 50px 0px 50px;
+  text-align: center;
 }
 
 .tutorial-gems-container {
