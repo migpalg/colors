@@ -69,10 +69,44 @@
       <button class="btn btn-block btn-primary" onclick="navigate('home')">Go to home</button>
     </section>
 
-    <section class="tutorial screen center-items" id="tutorialScreen">
-      <h2>Tutorial</h2>
+    <section class="tutorial screen justify-content-between tutorial-background" id="tutorialScreen">
+      <div class="tutorial-header d-flex">
+        <img onclick="navigate('home')" class="close-btn" src="img/navigation/close.png" alt="Close screen">
+      </div>
 
-      <button class="btn btn-block btn-primary" onclick="navigate('home')">Go to home</button>
+      <div class="tutorial-content center-items flex-column">
+      <div class="tutorial-container d-flex">
+          <ol class="tutorial-text-container">
+            <li>
+              <p>Debes escoger un grado de dificultad. Si subes de nivel tendrás menor tiempo para seleccionar las opciones.</p>
+            </li>
+
+            <li>
+              <p>Cuando aparezca la opción de "color" debes seleccionar el mismo color que muestre la figura principal, no importa si en las opciones ese color lo tiene un tipo de figura diferente.</p>
+              <div class="tutorial-gems-container">
+                <img src="img/gems/diamond/blue.svg">
+              </div>            
+              <div class="tutorial-gems-container">
+                <img src="img/gems/diamond/crimson.svg" class="tutorial-gems">
+                <img src="img/gems/diamond/purple.svg" class="tutorial-gems">
+                <img src="img/gems/circle/blue.svg" class="tutorial-gems tutorial-gems-selected">
+              </div>
+            </li>
+
+            <li>
+              <p >Cuando sea la opción "figura" debes seleccionar la misma forma que tenga la gema principal entre las opciones, no importa el color.</p>
+              <div class="tutorial-gems-container">
+                <img src="img/gems/triangle/green.svg">
+              </div>            
+              <div class="tutorial-gems-container">
+                <img src="img/gems/triangle/yellow.svg" class="tutorial-gems tutorial-gems-selected">
+                <img src="img/gems/diamond/green.svg" class="tutorial-gems">
+                <img src="img/gems/circle/green.svg" class="tutorial-gems">
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
     </section>
 
     <section class="difficult screen" id="difficultScreen">
@@ -99,7 +133,7 @@
         <button id="stopGameButton">Salir</button>
       </div>
 
-      <div class="center-items flex-column">
+      <div class="center-items flex-column game-text">
         <p id="gameOptionTypeDisplay"></p>
         <img id="gameOptionDisplay" class="game-option-image" src="img/gems/circle/blue.svg">
         <p id="gameTimerDisplay">0s</p>
