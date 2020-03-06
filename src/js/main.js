@@ -436,19 +436,21 @@
     // Botones de selección de dificultad
     document.getElementById('difficultSwitchButtonsContainer')
       .childNodes.forEach(function(item) {
-        if(item.value) {
+        if (!item.dataset) return;
+
+        if(item.dataset.difficult) {
           item.addEventListener('click', function(event) {
             if (store.getState().isPlaying) return;
             event.preventDefault();
 
             store.dispatch({ type: 'START_GAME' });
 
-            navigate('game');
-
             store.dispatch({
               type: 'SET_DIFFICULT',
-              difficult: event.target.value,
+              difficult: item.dataset.difficult,
             });
+
+            navigate('game');
             
             initGame(store);
 

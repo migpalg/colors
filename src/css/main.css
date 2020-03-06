@@ -334,7 +334,7 @@ span {
 
 /* Difficult styles */
 .difficult {
-  transform: perspective(600px) rotateX(60deg) scale(0.4);
+  transform: scale(1.2);
   padding: 1.5em;
 }
 
@@ -344,15 +344,19 @@ span {
 
 .difficult-switch {
   flex: 1;
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-gap: 1.5em;
-  gap: 1.5em;
 }
 
 .difficult-switch-item {
-  font-size: 0.9rem;
-  position: relative;
+  width: 200px;
+  margin-bottom: 30px;
+}
+
+.difficult-switch-item:last-child {
+  margin-bottom: 0;
+}
+
+.difficult-switch-item.hard {
+  width: 230px;
 }
 
 /* Game styles */
