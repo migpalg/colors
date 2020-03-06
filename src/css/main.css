@@ -355,26 +355,6 @@ span {
   position: relative;
 }
 
-.difficult-switch-item.swiched {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  position: fixed;
-  border-radius: 10px;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  transition: all 500ms ease;
-}
-
-.difficult-switch-item.swiched.full-screen {
-  width: 100%!important;
-  height: 100%!important;
-  top: 0!important;
-  left: 0!important;
-  border-radius: 0!important;
-}
-
 /* Game styles */
 .game {
   transform: scale(0.4);

@@ -441,36 +441,16 @@
             if (store.getState().isPlaying) return;
             event.preventDefault();
 
-            // Create mask element to make hero animation
-            var mask = document.createElement('div');
-            mask.classList.add('difficult-switch-item');
-            mask.classList.add('swiched');
-            mask.classList.add('btn');
-            mask.classList.add('btn-primary');
-            mask.innerText = event.target.innerText;
-            mask.style.width = event.target.clientWidth + 'px';
-            mask.style.height = event.target.clientHeight + 'px';
-            mask.style.top = event.target.offsetTop + 'px';
-            mask.style.left = event.target.offsetLeft + 'px';
-            item.parentElement.appendChild(mask);
             store.dispatch({ type: 'START_GAME' });
 
-            setTimeout(function() {
-              mask.classList.add('full-screen')
-              setTimeout(function() {
-                navigate('game');
-                store.dispatch({
-                  type: 'SET_DIFFICULT',
-                  difficult: event.target.value,
-                });
-                initGame(store);
+            navigate('game');
 
-                // When the transition end...
-                setTimeout(function() {
-                  mask.remove();
-                }, 250);
-              }, 1000);
-            }, 10);
+            store.dispatch({
+              type: 'SET_DIFFICULT',
+              difficult: event.target.value,
+            });
+            
+            initGame(store);
 
           });
         }
