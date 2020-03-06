@@ -149,28 +149,34 @@
     </section>
 
     <section class="review screen" id="reviewScreen">
-      <div class="d-flex justify-content-between">
-        <button class="btn btn-primary" onclick="navigate('home')">x</button>
-        <h2 class="text-center m-0">¡Fin del juego!</h2>
+      <div class="credits-header d-flex">
+        <img onclick="navigate('home')" class="close-btn" src="img/navigation/close.png" alt="Close screen">
       </div>
 
-      <div class="review-stats flex-one center-items flex-column">
-        <h3 class="text-center review-stats-title">Tus estadísticas</h5>
-        <div class="stats-grid">
-          <div class="stats-grid-item center-items flex-column">
-            <h6>Acertados</h6>
-            <p id="assertedPercentaje">0%</p>
-          </div>
-
-          <div class="stats-grid-item center-items flex-column">
-            <h6>Fallidos</h6>
-            <p id="dismissedPercentaje"></p>
+      <div>
+        <img class="review-stats-bg" src="img/bgs/papelpuntos.png">
+        <img class="review-gems" src="img/gems/gems.svg">
+        <div class="review-stats flex-one center-items flex-column">
+          <h3 class="text-center review-stats-title">Tus estadísticas</h5>
+          <div class="stats-grid">
+            <div class="stats-grid-item center-items flex-column">
+              <h6>Acertados</h6>
+              <p id="assertedPercentaje">0%</p>
+            </div>
+  
+            <div class="stats-grid-item center-items flex-column">
+              <h6>Fallidos</h6>
+              <p id="dismissedPercentaje"></p>
+            </div>
           </div>
         </div>
-        <button class="btn btn-block btn-primary" onclick="navigate('difficult')">
-          Jugar de nuevo
-        </button>
+       
       </div>
+      
+
+      
+        <img class="btn-block review-btn" onclick="navigate('difficult')" src="img/navigation/volverajugar.png">
+     
     </section>
   </main>
 

@@ -421,8 +421,30 @@ span {
   justify-content: space-between;
 }
 
+.review-btn {
+  margin-top: 1.5rem;
+  width: 180px;
+}
 .review-stats-title {
   margin: 0 0 1.2rem 0;
+}
+
+.review-stats-bg {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+  margin: 0px 0px -20px 0px;
+}
+
+.review-stats {
+  margin: 0px 0px -200px 0px;
+  position: relative;
+}
+
+.review-gems {
+  margin: -120px 0px 0px 16px;
+  position: relative;
+  width: 90%;
 }
 
 .stats-grid {
