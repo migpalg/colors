@@ -123,15 +123,24 @@
     </section>
 
     <section class="game screen" id="gameScreen">
-      <div>
-        <button id="stopGameButton">Salir</button>
+
+      <div class="game-header d-flex justify-content-between align-items-center">
+        <div class="game-time-container">
+          <img class="game-time-leaf" src="img/time-leaf.png" alt="">
+          <p id="gameTimerDisplay" class="game-time-display center-items">0s</p>
+        </div>
+        <img
+          id="stopGameButton"
+          onclick="navigate('home')"
+          class="close-btn close-btn-home"
+          src="img/navigation/close.png"
+          alt="Close screen">
       </div>
 
       <div class="center-items flex-column game-text">
-        <p id="gameOptionTypeDisplay"></p>
+        <p id="gameOptionTypeDisplay" class="game-option-type-text"></p>
         <img id="gameOptionDisplay" class="game-option-image" src="img/gems/circle/blue.svg">
-        <p id="gameTimerDisplay">0s</p>
-        <h3 id="gamePointsDisplay">0</h3>
+        <p class="game-score-text"><span id="gamePointsDisplay">0</span> puntos</p>
       </div>
 
       <div class="game-options-grid" id="gameOptionsGrid">

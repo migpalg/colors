@@ -269,7 +269,7 @@
         return last;
       }, []);
 
-      var minWidthHelper = 1;
+      var minWidthHelper = this.config.optionsCount;
 
       if (this.config.optionsCount > 3 && this.config.optionsCount % 2 === 0) {
         minWidthHelper = this.config.optionsCount / 2;
@@ -291,7 +291,8 @@
         button.appendChild(image);
 
         if (minWidthHelper > 1) {
-          button.style.minWidth = (1 / minWidthHelper * 100) + '%';
+          // button.style.minWidth = (1 / minWidthHelper * 100) + '%';
+          gameOptionsGrid.style.gridTemplateColumns = 'repeat(' + minWidthHelper + ', 1fr)';
         }
 
         // Añade un escuchador del click
