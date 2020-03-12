@@ -360,6 +360,25 @@ span {
 }
 
 /* Game styles */
+.assert-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  z-index: -1;
+  transition: background-color 500ms ease;
+}
+
+.assert-background.assert {
+  background-color: rgba(0, 128, 0, 0.3);
+}
+
+.assert-background.error {
+  background-color: rgba(220, 20, 60, 0.3);
+}
+
 .game {
   transform: scale(1.1);
   background-color: violet;

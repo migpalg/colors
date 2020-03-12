@@ -175,6 +175,26 @@
       asserts: document.getElementById('assertedPercentaje'),
       dissmissed: document.getElementById('dismissedPercentaje'),
     };
+    var gameScreen = document.getElementById('gameScreen');
+
+    function generateAssertBackground(isCorrect) {
+      if (typeof isCorrect === 'undefined') { isCorrect = false }
+
+      var assertBackgroundDiv = document.createElement('div');
+      assertBackgroundDiv.classList.add('assert-background');
+      assertBackgroundDiv.classList.add(isCorrect ? 'assert' : 'error');
+
+      gameScreen.appendChild(assertBackgroundDiv);
+
+      assertBackgroundDiv.addEventListener('transitionend', function() {
+        // gameScreen.removeChild(assertBackgroundDiv);
+        this.remove();
+      });
+
+      setTimeout(function() {
+        assertBackgroundDiv.classList.remove(isCorrect ? 'assert' : 'error');
+      }, 10);
+    }
 
     /**
      * Prototype that manages the game state
@@ -319,8 +339,10 @@
       // Verifica si la pregunta fue respondida correctamente
       if (lastQuestion.isCorrect) {
         this.makePoint(); // Realiza un punto!
+        generateAssertBackground(true);
       } else {
         this.dismiss(); // Resta puntos :(
+        generateAssertBackground(false);
       }
 
       // Genera una nueva pregunta
