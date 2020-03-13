@@ -4,6 +4,7 @@ module.exports = function(grunt) {
     uglify: {
       options: {
         banner: '/* Created by the best team :) */',
+        comments: false,
       },
       build: {
         src: 'src/js/main.js',

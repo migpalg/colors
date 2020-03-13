@@ -101,7 +101,7 @@
 
       this.updateDisplays();
     },
-    getBestGames() {
+    getBestGames: function() {
       var items = this.getItems();
 
       if (items.length <= 0) { return items; }
@@ -462,7 +462,7 @@
 
       gameStorage.putGameStats({
         answeredQuestions: answeredQuestions.length,
-        correctAnswersCount,
+        correctAnswersCount: correctAnswersCount,
         difficult: store.getState().difficult,
         points: this.points,
       }); 
