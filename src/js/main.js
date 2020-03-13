@@ -279,7 +279,7 @@
       gameOptDisplay.setAttribute('src', this.getOptionImagePath(this.questions[lastIndex - 1].image, this.questions[lastIndex - 1].color))
 
       // Muestra el contenido del objeto pregunta
-      gameOptTypeDisplay.innerHTML = this.questions[lastIndex - 1].type === 'image' ? 'Gema' : 'Color';
+      gameOptTypeDisplay.innerHTML = this.questions[lastIndex - 1].type === 'image' ? 'Figura' : 'Color';
     };
 
     Game.prototype.prepareOptions = function() {
