@@ -172,6 +172,7 @@
     var gameOptDisplay = document.getElementById('gameOptionDisplay');
     var gameOptTypeDisplay = document.getElementById('gameOptionTypeDisplay');
     var percentajesDisplays = {
+      total: document.getElementById('puntajeTotal'),
       asserts: document.getElementById('assertedPercentaje'),
       dissmissed: document.getElementById('dismissedPercentaje'),
     };
@@ -391,8 +392,9 @@
 
       var correctAnswersPercentaje = correctAnswersCount / answeredQuestions.length;
 
-      percentajesDisplays.asserts.innerText = Math.round(correctAnswersPercentaje * 100) + '%';
-      percentajesDisplays.dissmissed.innerText = Math.round((1 - correctAnswersPercentaje) * 100) + '%';
+      percentajesDisplays.total.innerText = 'Puntaje: ' + this.points;
+      percentajesDisplays.asserts.innerText = 'Aciertos: ' + correctAnswersCount;
+      percentajesDisplays.dissmissed.innerText = 'Intentos: ' + answeredQuestions.length;
 
       gameStorage.putGameStats(Math.round(correctAnswersPercentaje * 100) / 100); 
 
