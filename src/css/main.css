@@ -250,6 +250,14 @@ span {
   margin-right: 15px;
 }
 
+.history-info-text {
+  text-align: center;
+  width: 70%;
+  align-self: center;
+  margin: 60px 0;
+  color: white;
+}
+
 /* Credit Screen Styles */
 .credits {
   transform: scale(1.2);

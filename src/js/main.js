@@ -51,11 +51,45 @@
   };
 
   var gameStorage = {
-    updateDisplays: function() {
-      // var isSetted = Boolean(localStorage.getItem(CONFIG.historyStorageKey));
+    generateHistoryEntries: function() {
+      var bestGames = this.getBestGames();
 
-      console.log(this.getItems());
-      console.log(this.getBestGames());
+      var statsContainer = document.getElementById('statsContainer');
+
+      if (bestGames.length <= 0) {
+        var text = document.createElement('p');
+        text.classList.add('history-info-text');
+        text.innerText = '¡Juega para generar las estadísticas!';
+        statsContainer.appendChild(text);
+        return;
+      }
+
+      statsContainer.innerHTML = '';
+
+      bestGames.forEach(function(game, index) {
+        var historyEntry = document.createElement('div');
+        var historyImage = document.createElement('img');
+        var historyText = document.createElement('div');
+
+        historyEntry.classList.add('d-flex', 'align-items-center', 'history-entry');
+        historyImage.classList.add('history-position-image');
+        historyText.classList.add('history-entry-text');
+
+        historyImage.setAttribute('src', 'img/stats-positions/' + (index + 1) + '.png');
+        historyText.innerHTML = '' +
+          '<p>' + game.points + ' puntos</p>' +
+          '<p>' + game.correctAnswersCount + ' aciertos</p>' + 
+          '<p>' + game.answeredQuestions + ' intentos</p>';
+
+        historyEntry.appendChild(historyImage);
+        historyEntry.appendChild(historyText);
+        
+        statsContainer.appendChild(historyEntry);
+
+      });
+    },
+    updateDisplays: function() {
+      this.generateHistoryEntries();
     },
     putGameStats: function(entry) {
 
@@ -70,7 +104,7 @@
     getBestGames() {
       var items = this.getItems();
 
-      if (items.length <= 0) { return; }
+      if (items.length <= 0) { return items; }
 
       var sorted = items.sort(function(a, b) {
         if (a.points == b.points && !(a.correctAnswersCount == b.correctAnswersCount)) {
