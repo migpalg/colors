@@ -40,15 +40,15 @@ span {
 }
 
 .justify-content-center {
-  justify-content: center;
+  justify-content: center!important;
 }
 
 .align-items-center {
-  align-items: center;
+  align-items: center!important;
 }
 
 .justify-content-between {
-  justify-content: space-between;
+  justify-content: space-between!important;
 }
 
 .flex-one {
@@ -84,6 +84,7 @@ span {
   background-color: #FFB200;
   font-family: KGBlankSpaceSolid, sans-serif;
   text-shadow: 0 2px 3px #000;
+  letter-spacing: 1px;
 }
 
 .btn.btn-primary {
@@ -101,6 +102,11 @@ span {
 .btn-block {
   display: block;
   width: 100%;
+}
+
+.close-btn {
+  width: 25px;
+  height: 25px;
 }
 
 /* App styles */
@@ -123,7 +129,10 @@ span {
   z-index: 0;
   opacity: 0;
   transform: translateY(-20%);
-  transition: opacity 100ms ease, transform 0.4s ease;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+  background-image: url(../img/bgs/default.png);
+  background-size: cover;
+  background-position: center center;
 }
 
 
@@ -137,6 +146,9 @@ span {
 
 .splash {
   background: linear-gradient(#FFB200, #A65300);
+  background-image: url(../img/bgs/splash.png);
+  background-size: cover;
+  background-position: center center;
   opacity: 0;
   transform: scale(1.8);
   transition: all .3s ease;
@@ -155,25 +167,42 @@ span {
 .splash-app-logo {
   max-width: 100%;
   width: 75%;
+  transform: rotate(45deg);
+  transition: transform .5s ease;
+}
+
+.splash.loading .splash-app-logo {
+  transform: none;
 }
 
 /* Home Screen Styles */
 
 .home {
-  transform: scale(1.3);
+  transform: scale(1.5);
   background: linear-gradient(#FFB200, #A65300);
+  background-image: url(../img/bgs/home.png);
+  background-size: cover;
+  background-position: center center;
   justify-content: center;
   align-items: center;
   padding: 20px 10px;
 }
 
-.home-play {
+.home-play .home-app-logo {
   width: 100%;
+}
+
+.home.active .home-app-logo {
+  transform: none;
 }
 
 .home-app-logo {
   max-width: 100%;
-  width: 60%;
+  width: 75%;
+  transform: scale(0.5);
+  transition-delay: 150ms;
+  transition: all 0.6s ease;
+  text-shadow: 0 10px #000;
 }
 
 .home-btn {
@@ -181,21 +210,174 @@ span {
   width: 180px;
 }
 
+/* History Screen styles */
+.history {
+  padding: 20px;
+  transform: scale(1.2);
+}
+
+.history-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.history-entry-text {
+  flex: 1;
+  color: white;
+  font-size: 0.75em;
+}
+
+.history-entry-text > p {
+  margin: 0 0 5px 0;
+}
+
+.history-entry-text > p:first-child {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.history-entry {
+  width: 60%;
+  align-self: center;
+  margin-bottom: 18px;
+}
+
+.history-position-image {
+  width: 75px;
+  height: 75px;
+  margin-right: 15px;
+}
+
+.history-info-text {
+  text-align: center;
+  width: 70%;
+  align-self: center;
+  margin: 60px 0;
+  color: white;
+}
+
 /* Credit Screen Styles */
 .credits {
-  transform: translateY(30%);
+  transform: scale(1.2);
   background-color: crimson;
+  padding: 1em;
+}
+
+.credits-header {
+  justify-content: flex-end;
+}
+
+.credits-content {
+  flex: 1;
+  justify-content: space-evenly;
+}
+
+.author-container {
+  justify-content: center;
+}
+
+.author-image {
+  width: 100px;
+  height: 100px;
+  border: 5px solid white;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center center;
+}
+
+.author-text-container {
+  align-self: flex-end;
+  font-size: 0.9em;
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+  margin-left: -30px;
+}
+
+.author-text-container > * {
+  margin: 0;
+}
+
+.author-role {
+  font-size: 0.8em;
+  margin-top: 3px;
+  opacity: 0.7;
+}
+
+.author-juan {
+  background-image: url(../img/authors/juan-pablo.jpg);
+}
+
+.author-maria {
+  background-image: url(../img/authors/maria-isabel.jpg);
+}
+
+.author-miguel {
+  background-image: url(../img/authors/miguel-angel.jpg);
 }
 
 /* Tutorial screen styles */
 .tutorial {
-  transform: translateX(100%);
-  background-color: cornflowerblue;
+  transform: scale(1.2);
+  padding: 1em;
+}
+
+.tutorial-background:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.tutorial-header {
+  justify-content: flex-end;
+  position: relative;
+}
+
+.tutorial-content {
+  flex: 1;
+  justify-content: space-evenly;
+}
+
+.tutorial-container {
+  justify-content: center;
+  position: relative;
+}
+
+.tutorial-text-container {
+  font-family: KGBlankSpaceSolid, sans-serif;
+  align-self: flex-end;
+  font-size: 0.8em;
+  color: white;
+  padding: 5px;
+  margin: 0px 50px 0px 50px;
+  text-align: center;
+}
+
+.tutorial-gems-container {
+  text-align-last: center;
+  padding: 2px;
+}
+
+.tutorial-gems {
+  padding: 5px;
+}
+
+.tutorial-gems-selected {
+  border: 3px solid red;
+  border-radius: 50%;
+  margin: -3px;
 }
 
 /* Difficult styles */
 .difficult {
-  transform: perspective(600px) rotateX(60deg) scale(0.4);
+  transform: scale(1.2);
   padding: 1.5em;
 }
 
@@ -205,62 +387,125 @@ span {
 
 .difficult-switch {
   flex: 1;
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-gap: 1.5em;
-  gap: 1.5em;
 }
 
 .difficult-switch-item {
-  font-size: 0.9rem;
-  position: relative;
+  width: 200px;
+  margin-bottom: 30px;
 }
 
-.difficult-switch-item.swiched {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  position: fixed;
-  border-radius: 10px;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  transition: all 500ms ease;
+.difficult-switch-item:last-child {
+  margin-bottom: 0;
 }
 
-.difficult-switch-item.swiched.full-screen {
-  width: 100%!important;
-  height: 100%!important;
-  top: 0!important;
-  left: 0!important;
-  border-radius: 0!important;
+.difficult-switch-item.hard {
+  width: 230px;
 }
 
 /* Game styles */
+.assert-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  z-index: -1;
+  transition: background-color 500ms ease;
+}
+
+.assert-background.assert {
+  background-color: rgba(0, 128, 0, 0.3);
+}
+
+.assert-background.error {
+  background-color: rgba(220, 20, 60, 0.3);
+}
+
 .game {
-  transform: scale(0.4);
+  transform: scale(1.1);
   background-color: violet;
   justify-content: space-between;
-  align-items: center;
+}
+
+.game-header {
+  padding: 1rem;
+}
+
+.game-time-container {
+  position: relative;
+}
+
+.game-time-display {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  color: #FFF;
+}
+
+.game > div > .game-option-image {
+  height: 12vh;
+  margin: 30px 0;
 }
 
 .game-options-grid {
   padding: 20px;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  grid-gap: 10px;
+  gap: 10px;
+  display: grid;
 }
 
 .game-option {
-  flex: 1;
-  min-width: 33.333333%;
   border: none;
-  border-radius: 5px;
-  transition: transform .2s ease;
+  position: relative;
+  transition: transform .1s ease, filter 0.08s ease;
+}
+
+.game-option .game-option-image {
+  height: 35px;
+  position: absolute;
 }
 
 .game-option:active {
-  transform: scale(1.1);
+  transform: scale(1.3);
+  filter: brightness(1.5);
+}
+
+.game-option-image-bg {
+  max-width: 90%;
+}
+
+.game-text {
+  color: white;
+}
+
+.game-time-leaf {
+  width: 120px;
+}
+
+.close-btn-home {
+  margin-bottom: 20px;
+}
+
+.game-option-type-text {
+  color: #FFF;
+  text-shadow: 0 3px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+.game-score-text {
+  color: #FFF;
+  background-color: #1e1e1e;
+  padding: 6px 16px;
+  margin: 0;
+  border-radius: 3px;
+  font-size: 0.8em;
+  box-shadow: 0 3px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1.3px;
 }
 
 /* Review styles */
@@ -269,19 +514,39 @@ span {
   justify-content: space-between;
 }
 
-.review-stats-title {
-  margin: 0 0 1.2rem 0;
+.review-content {
+  position: relative;
 }
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-items: center;
-  align-items: center;
-  gap: 1.2rem;
-  grid-gap: 1.2rem;
+.review-btn {
+  margin: 0px 0px 60px 0px;
+  width: 180px;
+  align-self: center;
+}
+.review-stats-title {
+  margin: 0 0 10px 0;
+}
+
+.review-stats-bg {
+  max-width: 100%;
   width: 100%;
-  margin-bottom: 1.2rem;
+}
+
+.review-stats {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.review-gems {
+  margin: 0 auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 90%;
 }
 
 .stats-grid-item {

@@ -16,69 +16,126 @@
 
     <section class="home screen active" id="homeScreen">
       <img class="home-app-logo" src="img/app-logo.png" alt="GemRush Logo">
-      <button class="btn btn-block btn-primary home-btn" onclick="navigate('difficult')">Jugar</button>
-      <button class="btn btn-block btn-primary home-btn" onclick="navigate('tutorial')">Instrucciones</button>
-      <button class="btn btn-block btn-primary home-btn" onclick="navigate('history')">Estadisticas</button>
-      <button class="btn btn-block btn-primary home-btn" onclick="navigate('credits')">Créditos</button>
+      <img class="btn-block home-btn" onclick="navigate('difficult')" src="img/navigation/play.png">
+      <img class="btn-block home-btn" onclick="navigate('tutorial')" src="img/navigation/tutorial.png">
+      <img class="btn-block home-btn" onclick="navigate('history')" src="img/navigation/stats.png">
+      <img class="btn-block home-btn" onclick="navigate('credits')" src="img/navigation/credits.png">
     </section>
 
-    <section class="credits screen center-items" id="creditsScreen">
-      <h2>Credits</h2>
-      <button class="btn btn-block btn-primary" onclick="navigate('home')">Go to home</button>
-    </section>
-
-    <section class="history screen center-items" id="historyScreen">
-      <h2>History</h2>
-      <div class="stats-grid">
-        <div class="stats-grid-item center-items flex-column">
-          <h6>Acertados</h6>
-          <p id="globalAssertedPercentaje">0%</p>
+    <section class="credits screen justify-content-between" id="creditsScreen">
+      <div class="credits-header d-flex">
+        <img onclick="navigate('home')" class="close-btn" src="img/navigation/close.png" alt="Close screen">
+      </div>
+      <div class="credits-content center-items flex-column">
+        <div class="author-container d-flex">
+          <div class="author-image author-juan" alt=""></div>
+          <div class="author-text-container">
+            <p class="author-name">Juan Pablo García</p>
+            <p class="author-role">Ingeniero en sistemas</p>
+          </div>
         </div>
 
-        <div class="stats-grid-item center-items flex-column">
-          <h6>Fallidos</h6>
-          <p id="globalDismissedPercentaje">0%</p>
+        <div class="author-container d-flex">
+          <div class="author-image author-miguel" alt=""></div>
+          <div class="author-text-container">
+            <p class="author-name">Miguel Ángel Palacio</p>
+            <p class="author-role">Ingeniero en sistemas</p>
+          </div>
+        </div>
+
+        <div class="author-container d-flex">
+          <div class="author-image author-maria" alt=""></div>
+          <div class="author-text-container">
+            <p class="author-name">Maria Isabel Pérez</p>
+            <p class="author-role">Diseñadora gráfica</p>
+          </div>
         </div>
       </div>
-      <button class="btn btn-block btn-primary" onclick="navigate('home')">Go to home</button>
     </section>
 
-    <section class="tutorial screen center-items" id="tutorialScreen">
-      <h2>Tutorial</h2>
+    <section class="history screen justify-content-between tutorial-background" id="historyScreen">
+      <div class="credits-header d-flex">
+        <img onclick="navigate('home')" class="close-btn" src="img/navigation/close.png" alt="Close screen">
+      </div>
+      <div class="history-content">
+        <div class="d-flex flex-column" id="statsContainer">
+        </div>
+        <img src="img/gems/gems.svg">
+      </div>
+    </section>
 
-      <button class="btn btn-block btn-primary" onclick="navigate('home')">Go to home</button>
+    <section class="tutorial screen justify-content-between tutorial-background" id="tutorialScreen">
+      <div class="tutorial-header d-flex">
+        <img onclick="navigate('home')" class="close-btn" src="img/navigation/close.png" alt="Close screen">
+      </div>
+
+      <div class="tutorial-content center-items flex-column">
+        <div class="tutorial-container d-flex">
+          <ol class="tutorial-text-container">
+            <li>
+              <p>Debes escoger un grado de dificultad. Si subes de nivel tendrás menor tiempo para seleccionar las opciones.</p>
+            </li>
+
+            <li>
+              <p>Cuando aparezca la opción de "color" debes seleccionar el mismo color que muestre la figura principal, no importa si en las opciones ese color lo tiene un tipo de figura diferente.</p>
+              <div class="tutorial-gems-container">
+                <img src="img/gems/diamond/blue.svg">
+              </div>            
+              <div class="tutorial-gems-container">
+                <img src="img/gems/diamond/crimson.svg" class="tutorial-gems">
+                <img src="img/gems/diamond/purple.svg" class="tutorial-gems">
+                <img src="img/gems/circle/blue.svg" class="tutorial-gems tutorial-gems-selected">
+              </div>
+            </li>
+
+            <li>
+              <p >Cuando sea la opción "figura" debes seleccionar la misma forma que tenga la gema principal entre las opciones, no importa el color.</p>
+              <div class="tutorial-gems-container">
+                <img src="img/gems/triangle/green.svg">
+              </div>            
+              <div class="tutorial-gems-container">
+                <img src="img/gems/triangle/yellow.svg" class="tutorial-gems tutorial-gems-selected">
+                <img src="img/gems/diamond/green.svg" class="tutorial-gems">
+                <img src="img/gems/circle/green.svg" class="tutorial-gems">
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
     </section>
 
     <section class="difficult screen" id="difficultScreen">
-      <button class="btn btn-block" onclick="navigate('home')">Menú principal</button>
-      <h2 class="difficult-title text-center">Selecciona una dificultad</h2>
 
-      <div class="difficult-switch" id="difficultSwitchButtonsContainer">
-        <button class="btn btn-block btn-primary difficult-switch-item" value="easy">
-          Fácil 😅
-        </button>
+      <div class="credits-header d-flex">
+        <img onclick="navigate('home')" class="close-btn" src="img/navigation/close.png" alt="Close screen">
+      </div>
 
-        <button class="btn btn-block btn-primary difficult-switch-item" value="medium">
-          Medio 😥
-        </button>
-
-        <button class="btn btn-block btn-primary difficult-switch-item" value="hard">
-          Difícil 😈
-        </button>
+      <div class="difficult-switch center-items flex-column" id="difficultSwitchButtonsContainer">
+        <img src="img/navigation/easy.png" class="difficult-switch-item" data-difficult="easy" alt="Easy button">
+        <img src="img/navigation/medium.png" class="difficult-switch-item" data-difficult="medium" alt="Medium button">
+        <img src="img/navigation/hard.png" class="difficult-switch-item hard" data-difficult="hard" alt="Hard button">
       </div>
     </section>
 
     <section class="game screen" id="gameScreen">
-      <div>
-        <button id="stopGameButton">Salir</button>
+
+      <div class="game-header d-flex justify-content-between align-items-center">
+        <div class="game-time-container">
+          <img class="game-time-leaf" src="img/time-leaf.png" alt="">
+          <p id="gameTimerDisplay" class="game-time-display center-items">0s</p>
+        </div>
+        <img
+          id="stopGameButton"
+          onclick="navigate('home')"
+          class="close-btn close-btn-home"
+          src="img/navigation/close.png"
+          alt="Close screen">
       </div>
 
-      <div class="center-items flex-column">
-        <h2>Game</h2>
-        <p id="gameOptionTypeDisplay"></p>
-        <p id="gameOptionDisplay"></p>
-        <p id="gameTimerDisplay">0s</p>
-        <h3 id="gamePointsDisplay">0</h3>
+      <div class="center-items flex-column game-text">
+        <p id="gameOptionTypeDisplay" class="game-option-type-text"></p>
+        <img id="gameOptionDisplay" class="game-option-image" src="img/gems/circle/blue.svg">
+        <p class="game-score-text"><span id="gamePointsDisplay">0</span> puntos</p>
       </div>
 
       <div class="game-options-grid" id="gameOptionsGrid">
@@ -86,28 +143,27 @@
     </section>
 
     <section class="review screen" id="reviewScreen">
-      <div class="d-flex justify-content-between">
-        <button class="btn btn-primary" onclick="navigate('home')">x</button>
-        <h2 class="text-center m-0">¡Fin del juego!</h2>
+      <div class="credits-header d-flex">
+        <img onclick="navigate('home')" class="close-btn" src="img/navigation/close.png" alt="Close screen">
       </div>
 
-      <div class="review-stats flex-one center-items flex-column">
-        <h3 class="text-center review-stats-title">Tus estadísticas</h5>
-        <div class="stats-grid">
-          <div class="stats-grid-item center-items flex-column">
-            <h6>Acertados</h6>
-            <p id="assertedPercentaje">0%</p>
-          </div>
+      <div class="review-content flex-one center-items flex-column">
+        <img class="review-stats-bg" src="img/bgs/papelpuntos.png">
 
-          <div class="stats-grid-item center-items flex-column">
-            <h6>Fallidos</h6>
-            <p id="dismissedPercentaje"></p>
-          </div>
+        <div class="review-stats flex-one center-items flex-column">
+          <h3 class="text-center review-stats-title">Tus estadísticas</h5>
+          <p id="puntajeTotal">Puntaje: 0</p>
+          <p id="dismissedPercentaje">Intentos: 0</p>
+          <p id="assertedPercentaje">Aciertos: 0</p> 
         </div>
-        <button class="btn btn-block btn-primary" onclick="navigate('difficult')">
-          Jugar de nuevo
-        </button>
+
+        <img class="review-gems" src="img/gems/gems.svg">
       </div>
+      
+
+      
+        <img class="btn-block review-btn" onclick="navigate('difficult')" src="img/navigation/volverajugar.png">
+     
     </section>
   </main>
 

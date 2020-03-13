@@ -31,62 +31,97 @@
     },
     options: {
       images: [
-        'image-1',
-        'image-2',
-        'image-3',
-        'image-4',
-        'image-5',
-        'image-6',
+        'circle',
+        'diamond',
+        'oval',
+        'rhombus',
+        'square',
+        'triangle',
       ],
       colors: [
-        '#FD9EFF',
-        '#90AFE8',
-        '#ABFFC5',
-        '#E8E090',
-        '#FFBA97',
-        '#FF0000',
+        'blue',
+        'crimson',
+        'darkblue',
+        'green',
+        'purple',
+        'yellow',
       ],
     },
     historyStorageKey: 'GAME_HISTORY',
   };
 
   var gameStorage = {
-    globalAssertedDisplay: document.getElementById('globalAssertedPercentaje'),
-    globalDismissedDisplay: document.getElementById('globalDismissedPercentaje'),
-    updateDisplays: function() {
-      var isSetted = Boolean(localStorage.getItem(CONFIG.historyStorageKey));
+    generateHistoryEntries: function() {
+      var bestGames = this.getBestGames();
 
-      var winRate = this.getGlobalPercentaje();
+      var statsContainer = document.getElementById('statsContainer');
 
-      this.globalAssertedDisplay.innerText = Math.round(winRate * 100) + '%';
-      this.globalDismissedDisplay.innerText = (isSetted ? Math.round((1 - winRate) * 100) : 0) + '%';
-    },
-    putGameStats: function(winRate) {
-      if (typeof winRate !== 'number') {
-        console.error('Unvalid values to put in storage');
+      if (bestGames.length <= 0) {
+        var text = document.createElement('p');
+        text.classList.add('history-info-text');
+        text.innerText = '¡Juega para generar las estadísticas!';
+        statsContainer.appendChild(text);
         return;
       }
 
+      statsContainer.innerHTML = '';
+
+      bestGames.forEach(function(game, index) {
+        var historyEntry = document.createElement('div');
+        var historyImage = document.createElement('img');
+        var historyText = document.createElement('div');
+
+        historyEntry.classList.add('d-flex', 'align-items-center', 'history-entry');
+        historyImage.classList.add('history-position-image');
+        historyText.classList.add('history-entry-text');
+
+        historyImage.setAttribute('src', 'img/stats-positions/' + (index + 1) + '.png');
+        historyText.innerHTML = '' +
+          '<p>' + game.points + ' puntos</p>' +
+          '<p>' + game.correctAnswersCount + ' aciertos</p>' + 
+          '<p>' + game.answeredQuestions + ' intentos</p>';
+
+        historyEntry.appendChild(historyImage);
+        historyEntry.appendChild(historyText);
+        
+        statsContainer.appendChild(historyEntry);
+
+      });
+    },
+    updateDisplays: function() {
+      this.generateHistoryEntries();
+    },
+    putGameStats: function(entry) {
+
       var items = this.getItems();
 
-      items.push(winRate);
+      items.push(entry);
       
       localStorage.setItem(CONFIG.historyStorageKey, JSON.stringify(items));
 
       this.updateDisplays();
     },
+    getBestGames() {
+      var items = this.getItems();
+
+      if (items.length <= 0) { return items; }
+
+      var sorted = items.sort(function(a, b) {
+        if (a.points == b.points && !(a.correctAnswersCount == b.correctAnswersCount)) {
+          return b.correctAnswersCount - a.correctAnswersCount;
+        }
+
+        if (a.correctAnswersCount == b.correctAnswersCount) {
+          return b.answeredQuestions - a.answeredQuestions;
+        }
+
+        return b.points - a.points;
+      });
+
+      return sorted.slice(0, 3);
+    },
     getItems: function() {
       return JSON.parse(localStorage.getItem(CONFIG.historyStorageKey) || "[]");
-    },
-    getGlobalPercentaje: function() {
-      var items = this.getItems();
-      if (items.length <= 0) return  0;
-
-      var winRate = items.reduce(function(lastItem, currentItem) {
-        return lastItem + currentItem;
-      }) / items.length;
-
-      return winRate;
     },
     clear: function() {
       localStorage.removeItem(CONFIG.historyStorageKey);
@@ -172,9 +207,29 @@
     var gameOptDisplay = document.getElementById('gameOptionDisplay');
     var gameOptTypeDisplay = document.getElementById('gameOptionTypeDisplay');
     var percentajesDisplays = {
+      total: document.getElementById('puntajeTotal'),
       asserts: document.getElementById('assertedPercentaje'),
       dissmissed: document.getElementById('dismissedPercentaje'),
     };
+    var gameScreen = document.getElementById('gameScreen');
+
+    function generateAssertBackground(isCorrect) {
+      if (typeof isCorrect === 'undefined') { isCorrect = false }
+
+      var assertBackgroundDiv = document.createElement('div');
+      assertBackgroundDiv.classList.add('assert-background');
+      assertBackgroundDiv.classList.add(isCorrect ? 'assert' : 'error');
+
+      gameScreen.appendChild(assertBackgroundDiv);
+
+      assertBackgroundDiv.addEventListener('transitionend', function() {
+        this.remove();
+      });
+
+      setTimeout(function() {
+        assertBackgroundDiv.classList.remove(isCorrect ? 'assert' : 'error');
+      }, 10);
+    }
 
     /**
      * Prototype that manages the game state
@@ -187,6 +242,10 @@
       this.timer = 0;
       this.options = [];   // {color: '', image: ''}
       this.questions = []; // {color: '', image: '', type: '', isCorrect: false}
+    }
+
+    Game.prototype.getOptionImagePath = function(imageIndex, colorIndex) {
+      return 'img/gems/' + CONFIG.options.images[imageIndex] + '/' + CONFIG.options.colors[colorIndex] + '.svg'
     }
 
     // Genera una nueva pregunta, con los valores en las opciones y los Muestra
@@ -216,15 +275,11 @@
 
       // Muestra el tipo de selección que tiene que hacer el usuario por
       // medio de un componente
-      gameOptDisplay.innerText = this.questions[lastIndex - 1].type;
+      // gameOptDisplay.innerText = this.questions[lastIndex - 1].type;
+      gameOptDisplay.setAttribute('src', this.getOptionImagePath(this.questions[lastIndex - 1].image, this.questions[lastIndex - 1].color))
 
       // Muestra el contenido del objeto pregunta
-      gameOptTypeDisplay.innerText = this.questions[lastIndex - 1].image;
-
-      // Muestra el color por medio del background
-      gameOptTypeDisplay.style.backgroundColor = CONFIG.options.colors[
-        this.questions[lastIndex - 1].color
-      ];
+      gameOptTypeDisplay.innerHTML = this.questions[lastIndex - 1].type === 'image' ? 'Figura' : 'Color';
     };
 
     Game.prototype.prepareOptions = function() {
@@ -269,27 +324,39 @@
         return last;
       }, []);
 
-      var minWidthHelper = 1;
+      var minWidthHelper = this.config.optionsCount;
 
       if (this.config.optionsCount > 3 && this.config.optionsCount % 2 === 0) {
         minWidthHelper = this.config.optionsCount / 2;
       }
 
+      var IMAGES_ASSETS_URLS = [
+        'img/gems/stone-background-01.png',
+        'img/gems/stone-background-02.png',
+      ];
+
       this.options.forEach(function(option, index) {
-        var button = document.createElement('button');
+        var button = document.createElement('div');
+        var image = document.createElement('img');
+        var backgroundImage = document.createElement('img')
 
         // Añade la clase para que se le pongan los estilos del
         // game-option
-        button.className = 'game-option btn';
+        button.classList.add('game-option', 'center-items');
 
-        // Cambia el background de la opción
-        button.style.backgroundColor = CONFIG.options.colors[option.color];
+        image.classList.add('game-option-image');
 
-        // Cambia el contenido
-        button.innerText = option.image;
+        backgroundImage.classList.add('game-option-image-bg');
+
+        image.setAttribute('src', this.getOptionImagePath(option.image, option.color));
+        backgroundImage.setAttribute('src', IMAGES_ASSETS_URLS[index % 2]);
+
+        button.appendChild(image);
+        button.appendChild(backgroundImage);
 
         if (minWidthHelper > 1) {
-          button.style.minWidth = (1 / minWidthHelper * 100) + '%';
+          // button.style.minWidth = (1 / minWidthHelper * 100) + '%';
+          gameOptionsGrid.style.gridTemplateColumns = 'repeat(' + minWidthHelper + ', 1fr)';
         }
 
         // Añade un escuchador del click
@@ -316,8 +383,10 @@
       // Verifica si la pregunta fue respondida correctamente
       if (lastQuestion.isCorrect) {
         this.makePoint(); // Realiza un punto!
+        generateAssertBackground(true);
       } else {
         this.dismiss(); // Resta puntos :(
+        generateAssertBackground(false);
       }
 
       // Genera una nueva pregunta
@@ -387,12 +456,16 @@
         return question.isCorrect;
       }).length;
 
-      var correctAnswersPercentaje = correctAnswersCount / answeredQuestions.length;
+      percentajesDisplays.total.innerText = 'Puntaje: ' + this.points;
+      percentajesDisplays.asserts.innerText = 'Aciertos: ' + correctAnswersCount;
+      percentajesDisplays.dissmissed.innerText = 'Intentos: ' + answeredQuestions.length;
 
-      percentajesDisplays.asserts.innerText = Math.round(correctAnswersPercentaje * 100) + '%';
-      percentajesDisplays.dissmissed.innerText = Math.round((1 - correctAnswersPercentaje) * 100) + '%';
-
-      gameStorage.putGameStats(Math.round(correctAnswersPercentaje * 100) / 100); 
+      gameStorage.putGameStats({
+        answeredQuestions: answeredQuestions.length,
+        correctAnswersCount,
+        difficult: store.getState().difficult,
+        points: this.points,
+      }); 
 
       store.dispatch({ type: 'FINISH_GAME', data: answeredQuestions });
       store.dispatch({ type: 'NAVIGATE', screen: 'review' });
@@ -434,41 +507,23 @@
     // Botones de selección de dificultad
     document.getElementById('difficultSwitchButtonsContainer')
       .childNodes.forEach(function(item) {
-        if(item.value) {
+        if (!item.dataset) return;
+
+        if(item.dataset.difficult) {
           item.addEventListener('click', function(event) {
             if (store.getState().isPlaying) return;
             event.preventDefault();
 
-            // Create mask element to make hero animation
-            var mask = document.createElement('div');
-            mask.classList.add('difficult-switch-item');
-            mask.classList.add('swiched');
-            mask.classList.add('btn');
-            mask.classList.add('btn-primary');
-            mask.innerText = event.target.innerText;
-            mask.style.width = event.target.clientWidth + 'px';
-            mask.style.height = event.target.clientHeight + 'px';
-            mask.style.top = event.target.offsetTop + 'px';
-            mask.style.left = event.target.offsetLeft + 'px';
-            item.parentElement.appendChild(mask);
             store.dispatch({ type: 'START_GAME' });
 
-            setTimeout(function() {
-              mask.classList.add('full-screen')
-              setTimeout(function() {
-                navigate('game');
-                store.dispatch({
-                  type: 'SET_DIFFICULT',
-                  difficult: event.target.value,
-                });
-                initGame(store);
+            store.dispatch({
+              type: 'SET_DIFFICULT',
+              difficult: item.dataset.difficult,
+            });
 
-                // When the transition end...
-                setTimeout(function() {
-                  mask.remove();
-                }, 250);
-              }, 1000);
-            }, 10);
+            navigate('game');
+            
+            initGame(store);
 
           });
         }
