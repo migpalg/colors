@@ -426,6 +426,7 @@
         answeredQuestions: answeredQuestions.length,
         correctAnswersCount,
         difficult: store.getState().difficult,
+        points: this.points,
       }); 
 
       store.dispatch({ type: 'FINISH_GAME', data: answeredQuestions });
