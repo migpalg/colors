@@ -514,30 +514,38 @@ span {
   justify-content: space-between;
 }
 
+.review-content {
+  position: relative;
+}
+
 .review-btn {
   margin: 0px 0px 60px 0px;
   width: 180px;
   align-self: center;
 }
 .review-stats-title {
-  margin: 0 0 1.2rem 0;
+  margin: 0 0 10px 0;
 }
 
 .review-stats-bg {
-  position: relative;
   max-width: 100%;
   width: 100%;
-  margin: 0px 0px -20px 0px;
 }
 
 .review-stats {
-  margin: -370px 0px 0px 87px;
-  position: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .review-gems {
-  margin: -120px 0px 0px 16px;
-  position: relative;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 90%;
 }
 
