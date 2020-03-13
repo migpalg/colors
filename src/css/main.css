@@ -422,8 +422,9 @@ span {
 }
 
 .review-btn {
-  margin-top: 1.5rem;
+  margin: 0px 0px 60px 0px;
   width: 180px;
+  align-self: center;
 }
 .review-stats-title {
   margin: 0 0 1.2rem 0;
@@ -437,8 +438,8 @@ span {
 }
 
 .review-stats {
-  margin: 0px 0px -200px 0px;
-  position: relative;
+  margin: -370px 0px 0px 87px;
+  position: fixed;
 }
 
 .review-gems {
