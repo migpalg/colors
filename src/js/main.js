@@ -176,6 +176,25 @@
       asserts: document.getElementById('assertedPercentaje'),
       dissmissed: document.getElementById('dismissedPercentaje'),
     };
+    var gameScreen = document.getElementById('gameScreen');
+
+    function generateAssertBackground(isCorrect) {
+      if (typeof isCorrect === 'undefined') { isCorrect = false }
+
+      var assertBackgroundDiv = document.createElement('div');
+      assertBackgroundDiv.classList.add('assert-background');
+      assertBackgroundDiv.classList.add(isCorrect ? 'assert' : 'error');
+
+      gameScreen.appendChild(assertBackgroundDiv);
+
+      assertBackgroundDiv.addEventListener('transitionend', function() {
+        this.remove();
+      });
+
+      setTimeout(function() {
+        assertBackgroundDiv.classList.remove(isCorrect ? 'assert' : 'error');
+      }, 10);
+    }
 
     /**
      * Prototype that manages the game state
@@ -270,29 +289,39 @@
         return last;
       }, []);
 
-      var minWidthHelper = 1;
+      var minWidthHelper = this.config.optionsCount;
 
       if (this.config.optionsCount > 3 && this.config.optionsCount % 2 === 0) {
         minWidthHelper = this.config.optionsCount / 2;
       }
 
+      var IMAGES_ASSETS_URLS = [
+        'img/gems/stone-background-01.png',
+        'img/gems/stone-background-02.png',
+      ];
+
       this.options.forEach(function(option, index) {
         var button = document.createElement('div');
         var image = document.createElement('img');
+        var backgroundImage = document.createElement('img')
 
         // Añade la clase para que se le pongan los estilos del
         // game-option
-        button.classList.add('game-option');
-        button.classList.add('center-items');
+        button.classList.add('game-option', 'center-items');
 
         image.classList.add('game-option-image');
 
+        backgroundImage.classList.add('game-option-image-bg');
+
         image.setAttribute('src', this.getOptionImagePath(option.image, option.color));
+        backgroundImage.setAttribute('src', IMAGES_ASSETS_URLS[index % 2]);
 
         button.appendChild(image);
+        button.appendChild(backgroundImage);
 
         if (minWidthHelper > 1) {
-          button.style.minWidth = (1 / minWidthHelper * 100) + '%';
+          // button.style.minWidth = (1 / minWidthHelper * 100) + '%';
+          gameOptionsGrid.style.gridTemplateColumns = 'repeat(' + minWidthHelper + ', 1fr)';
         }
 
         // Añade un escuchador del click
@@ -319,8 +348,10 @@
       // Verifica si la pregunta fue respondida correctamente
       if (lastQuestion.isCorrect) {
         this.makePoint(); // Realiza un punto!
+        generateAssertBackground(true);
       } else {
         this.dismiss(); // Resta puntos :(
+        generateAssertBackground(false);
       }
 
       // Genera una nueva pregunta
