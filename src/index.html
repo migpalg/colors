@@ -53,20 +53,15 @@
       </div>
     </section>
 
-    <section class="history screen center-items" id="historyScreen">
-      <h2>History</h2>
-      <div class="stats-grid">
-        <div class="stats-grid-item center-items flex-column">
-          <h6>Acertados</h6>
-          <p id="globalAssertedPercentaje">0%</p>
-        </div>
-
-        <div class="stats-grid-item center-items flex-column">
-          <h6>Fallidos</h6>
-          <p id="globalDismissedPercentaje">0%</p>
-        </div>
+    <section class="history screen justify-content-between tutorial-background" id="historyScreen">
+      <div class="credits-header d-flex">
+        <img onclick="navigate('home')" class="close-btn" src="img/navigation/close.png" alt="Close screen">
       </div>
-      <button class="btn btn-block btn-primary" onclick="navigate('home')">Go to home</button>
+      <div class="history-content">
+        <div class="d-flex flex-column" id="statsContainer">
+        </div>
+        <img src="img/gems/gems.svg">
+      </div>
     </section>
 
     <section class="tutorial screen justify-content-between tutorial-background" id="tutorialScreen">
@@ -75,7 +70,7 @@
       </div>
 
       <div class="tutorial-content center-items flex-column">
-      <div class="tutorial-container d-flex">
+        <div class="tutorial-container d-flex">
           <ol class="tutorial-text-container">
             <li>
               <p>Debes escoger un grado de dificultad. Si subes de nivel tendrás menor tiempo para seleccionar las opciones.</p>

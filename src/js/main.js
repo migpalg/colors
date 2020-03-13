@@ -51,42 +51,77 @@
   };
 
   var gameStorage = {
-    globalAssertedDisplay: document.getElementById('globalAssertedPercentaje'),
-    globalDismissedDisplay: document.getElementById('globalDismissedPercentaje'),
-    updateDisplays: function() {
-      var isSetted = Boolean(localStorage.getItem(CONFIG.historyStorageKey));
+    generateHistoryEntries: function() {
+      var bestGames = this.getBestGames();
 
-      var winRate = this.getGlobalPercentaje();
+      var statsContainer = document.getElementById('statsContainer');
 
-      this.globalAssertedDisplay.innerText = Math.round(winRate * 100) + '%';
-      this.globalDismissedDisplay.innerText = (isSetted ? Math.round((1 - winRate) * 100) : 0) + '%';
-    },
-    putGameStats: function(winRate) {
-      if (typeof winRate !== 'number') {
-        console.error('Unvalid values to put in storage');
+      if (bestGames.length <= 0) {
+        var text = document.createElement('p');
+        text.classList.add('history-info-text');
+        text.innerText = '¡Juega para generar las estadísticas!';
+        statsContainer.appendChild(text);
         return;
       }
 
+      statsContainer.innerHTML = '';
+
+      bestGames.forEach(function(game, index) {
+        var historyEntry = document.createElement('div');
+        var historyImage = document.createElement('img');
+        var historyText = document.createElement('div');
+
+        historyEntry.classList.add('d-flex', 'align-items-center', 'history-entry');
+        historyImage.classList.add('history-position-image');
+        historyText.classList.add('history-entry-text');
+
+        historyImage.setAttribute('src', 'img/stats-positions/' + (index + 1) + '.png');
+        historyText.innerHTML = '' +
+          '<p>' + game.points + ' puntos</p>' +
+          '<p>' + game.correctAnswersCount + ' aciertos</p>' + 
+          '<p>' + game.answeredQuestions + ' intentos</p>';
+
+        historyEntry.appendChild(historyImage);
+        historyEntry.appendChild(historyText);
+        
+        statsContainer.appendChild(historyEntry);
+
+      });
+    },
+    updateDisplays: function() {
+      this.generateHistoryEntries();
+    },
+    putGameStats: function(entry) {
+
       var items = this.getItems();
 
-      items.push(winRate);
+      items.push(entry);
       
       localStorage.setItem(CONFIG.historyStorageKey, JSON.stringify(items));
 
       this.updateDisplays();
     },
+    getBestGames() {
+      var items = this.getItems();
+
+      if (items.length <= 0) { return items; }
+
+      var sorted = items.sort(function(a, b) {
+        if (a.points == b.points && !(a.correctAnswersCount == b.correctAnswersCount)) {
+          return b.correctAnswersCount - a.correctAnswersCount;
+        }
+
+        if (a.correctAnswersCount == b.correctAnswersCount) {
+          return b.answeredQuestions - a.answeredQuestions;
+        }
+
+        return b.points - a.points;
+      });
+
+      return sorted.slice(0, 3);
+    },
     getItems: function() {
       return JSON.parse(localStorage.getItem(CONFIG.historyStorageKey) || "[]");
-    },
-    getGlobalPercentaje: function() {
-      var items = this.getItems();
-      if (items.length <= 0) return  0;
-
-      var winRate = items.reduce(function(lastItem, currentItem) {
-        return lastItem + currentItem;
-      }) / items.length;
-
-      return winRate;
     },
     clear: function() {
       localStorage.removeItem(CONFIG.historyStorageKey);
@@ -421,13 +456,16 @@
         return question.isCorrect;
       }).length;
 
-      var correctAnswersPercentaje = correctAnswersCount / answeredQuestions.length;
-
       percentajesDisplays.total.innerText = 'Puntaje: ' + this.points;
       percentajesDisplays.asserts.innerText = 'Aciertos: ' + correctAnswersCount;
       percentajesDisplays.dissmissed.innerText = 'Intentos: ' + answeredQuestions.length;
 
-      gameStorage.putGameStats(Math.round(correctAnswersPercentaje * 100) / 100); 
+      gameStorage.putGameStats({
+        answeredQuestions: answeredQuestions.length,
+        correctAnswersCount,
+        difficult: store.getState().difficult,
+        points: this.points,
+      }); 
 
       store.dispatch({ type: 'FINISH_GAME', data: answeredQuestions });
       store.dispatch({ type: 'NAVIGATE', screen: 'review' });
