@@ -73,11 +73,15 @@
       if (items.length <= 0) { return; }
 
       var sorted = items.sort(function(a, b) {
+        if (a.points == b.points && !(a.correctAnswersCount == b.correctAnswersCount)) {
+          return b.correctAnswersCount - a.correctAnswersCount;
+        }
+
         if (a.correctAnswersCount == b.correctAnswersCount) {
           return b.answeredQuestions - a.answeredQuestions;
         }
 
-        return b.correctAnswersCount - a.correctAnswersCount;
+        return b.points - a.points;
       });
 
       return sorted.slice(0, 3);
