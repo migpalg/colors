@@ -212,7 +212,42 @@ span {
 
 /* History Screen styles */
 .history {
+  padding: 20px;
   transform: scale(1.2);
+}
+
+.history-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.history-entry-text {
+  flex: 1;
+  color: white;
+  font-size: 0.75em;
+}
+
+.history-entry-text > p {
+  margin: 0;
+}
+
+.history-entry-text > p:first-child {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.history-entry {
+  width: 60%;
+  align-self: center;
+  margin-bottom: 18px;
+}
+
+.history-position-image {
+  width: 75px;
+  height: 75px;
+  margin-right: 15px;
 }
 
 /* Credit Screen Styles */
@@ -278,7 +313,6 @@ span {
 /* Tutorial screen styles */
 .tutorial {
   transform: scale(1.2);
-  background-color: cornflowerblue;
   padding: 1em;
 }
 
@@ -290,6 +324,7 @@ span {
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
 }
 
 .tutorial-header {
@@ -496,17 +531,6 @@ span {
   margin: -120px 0px 0px 16px;
   position: relative;
   width: 90%;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-items: center;
-  align-items: center;
-  gap: 1.2rem;
-  grid-gap: 1.2rem;
-  width: 100%;
-  margin-bottom: 1.2rem;
 }
 
 .stats-grid-item {
