@@ -187,7 +187,6 @@
       gameScreen.appendChild(assertBackgroundDiv);
 
       assertBackgroundDiv.addEventListener('transitionend', function() {
-        // gameScreen.removeChild(assertBackgroundDiv);
         this.remove();
       });
 
@@ -295,20 +294,29 @@
         minWidthHelper = this.config.optionsCount / 2;
       }
 
+      var IMAGES_ASSETS_URLS = [
+        'img/gems/stone-background-01.png',
+        'img/gems/stone-background-02.png',
+      ];
+
       this.options.forEach(function(option, index) {
         var button = document.createElement('div');
         var image = document.createElement('img');
+        var backgroundImage = document.createElement('img')
 
         // Añade la clase para que se le pongan los estilos del
         // game-option
-        button.classList.add('game-option');
-        button.classList.add('center-items');
+        button.classList.add('game-option', 'center-items');
 
         image.classList.add('game-option-image');
 
+        backgroundImage.classList.add('game-option-image-bg');
+
         image.setAttribute('src', this.getOptionImagePath(option.image, option.color));
+        backgroundImage.setAttribute('src', IMAGES_ASSETS_URLS[index % 2]);
 
         button.appendChild(image);
+        button.appendChild(backgroundImage);
 
         if (minWidthHelper > 1) {
           // button.style.minWidth = (1 / minWidthHelper * 100) + '%';
