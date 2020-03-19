@@ -7,8 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "serve src/",
     "start": "serve ./www -l $PORT",
+    "start:build": "grunt && serve www/",
+    "start:android": "npm run build && cordova emulate android",
     "build": "rm -rf www/ && grunt",
-    "start:build": "grunt && serve www/"
+    "build:android": "npm run build && cordova build android"
   },
   "keywords": [
     "ecosystem:cordova"
