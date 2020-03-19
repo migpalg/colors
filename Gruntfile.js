@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       },
       build: {
         src: 'src/js/main.js',
-        dest: 'dist/js/main.min.js',
+        dest: 'www/js/main.min.js',
       },
     },
     cssmin: {
@@ -18,7 +18,7 @@ module.exports = function(grunt) {
       },
       target: {
         files: {
-          'dist/css/main.min.css': [
+          'www/css/main.min.css': [
             'src/css/normalize.css',
             'src/css/main.css',
           ],
@@ -30,8 +30,8 @@ module.exports = function(grunt) {
         options: {
           patterns: [
             {
-              match: /\.js"/g,
-              replacement: '.min.js"',
+              match: /main\.js"/g,
+              replacement: 'main.min.js"',
             },
             {
               match: /<link rel="stylesheet" href="css\/normalize\.css">/,
@@ -44,14 +44,14 @@ module.exports = function(grunt) {
           ],
         },
         files: [
-          {expand: true, flatten: true, src: ['src/*.html'], dest: 'dist/'},
+          {expand: true, flatten: true, src: ['src/*.html'], dest: 'www/'},
         ],
       },
     },
     copy: {
       main: {
         files: [
-          {expand: true, cwd: 'src/', src: ['img/**', 'fonts/**'], dest: 'dist/'}
+          {expand: true, cwd: 'src/', src: ['img/**', 'fonts/**'], dest: 'www/'}
         ]
       }
     }
