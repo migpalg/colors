@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "serve src/",
-    "start": "serve ./dist -l $PORT",
-    "build": "rm -rf dist/ && grunt",
-    "start:build": "grunt && serve dist/"
+    "start": "serve ./www -l $PORT",
+    "build": "rm -rf www/ && grunt",
+    "start:build": "grunt && serve www/"
   },
   "keywords": [
     "ecosystem:cordova"
