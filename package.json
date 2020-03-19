@@ -1,5 +1,5 @@
 {
-  "name": "colors",
+  "name": "gem-rush",
   "version": "2.2.1",
   "description": "",
   "main": "index.js",
@@ -10,10 +10,13 @@
     "build": "rm -rf dist/ && grunt",
     "start:build": "grunt && serve dist/"
   },
-  "keywords": [],
+  "keywords": [
+    "ecosystem:cordova"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "cordova": "^9.0.0",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
     "grunt": "^1.1.0",
