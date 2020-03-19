@@ -9,6 +9,9 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.migpalg.gemrush"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.migpalg.gemrush"
     }
   },
   "dependent_plugins": {}
