@@ -30,8 +30,8 @@ module.exports = function(grunt) {
         options: {
           patterns: [
             {
-              match: /\.js"/g,
-              replacement: '.min.js"',
+              match: /main\.js"/g,
+              replacement: 'main.min.js"',
             },
             {
               match: /<link rel="stylesheet" href="css\/normalize\.css">/,

@@ -11,19 +11,19 @@
   var CONFIG = {
     difficult: {
       easy: {
-        maxTime: 10,
+        maxTime: 16,
         optionsCount: 3,
         assertPoint: 150,
         dismissPenalty: 160,
       },
       medium: {
-        maxTime: 12,
+        maxTime: 18,
         optionsCount: 4,
         assertPoint: 180,
         dismissPenalty: 185,
       },
       hard: {
-        maxTime: 15,
+        maxTime: 20,
         optionsCount: 6,
         assertPoint: 220,
         dismissPenalty: 222,
@@ -386,6 +386,7 @@
         generateAssertBackground(true);
       } else {
         this.dismiss(); // Resta puntos :(
+        navigator.vibrate(200);
         generateAssertBackground(false);
       }
 
@@ -564,7 +565,8 @@
   }
 
   // Escuchador del evento onload del window
-  window.onload = main;
+  // window.onload = main;
+  document.addEventListener('deviceready', main, false);
 })();
 
 /**
